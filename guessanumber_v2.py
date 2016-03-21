@@ -13,6 +13,7 @@ while play.lower() == 'y':
 
     guesses_taken = 0
     max_guesses = 4
+    last_guess = (max_guesses - 1)
     rand_num = random.randint(1,100)
 
     while guesses_taken < int(max_guesses):
@@ -21,16 +22,16 @@ while play.lower() == 'y':
         if guesses_taken > 0:
             print('Guess again!')
         chosen_num = int(input())
-        if rand_num < chosen_num and guesses_taken != (max_guesses - 1):
+        if rand_num < chosen_num and guesses_taken != last_guess:
             print('Too high.')
-        elif rand_num < chosen_num and guesses_taken == (max_guesses - 1):
+        elif rand_num < chosen_num and guesses_taken == last_guess:
             print('Too high. The maximum number of guesses has been reached.')
-        elif rand_num > chosen_num and guesses_taken != (max_guesses - 1):
+        elif rand_num > chosen_num and guesses_taken != last_guess:
             print('Too low.')
-        elif rand_num > chosen_num and guesses_taken == (max_guesses - 1):
+        elif rand_num > chosen_num and guesses_taken == last_guess:
             print('Too low. The maximum number of guesses has been reached.')
         elif rand_num == chosen_num:
-            guesses_taken = (max_guesses - 1) #used this instead of break
+            guesses_taken = last_guess #used this instead of break
         guesses_taken += 1
 
     if rand_num == chosen_num:
@@ -39,4 +40,4 @@ while play.lower() == 'y':
         print('The number I was thinking of was ' + str(rand_num) + '.')
 
     play = input("Would you like to play again? (y/n): ")
-    print('')
+print('')
