@@ -1,7 +1,7 @@
 #guessanumber_func created by Matt Voelpel 3.21.2016
 #v2 modified to use functions
 print('')
-def guess(max_guesses, guesses_taken):
+def guess(max_guesses, guesses_taken): #should chosen_num be included here? it errors....
     """Prompts the user to guess a number. Returned as chosen_num"""
     if guesses_taken == 0:
         print('Guess a number between 1 and 100. You have only ' + str(max_guesses) + ' guesses, so choose wisely.')
@@ -9,7 +9,7 @@ def guess(max_guesses, guesses_taken):
         print('Guess again!')
     chosen_num = int(input())
     return chosen_num
-
+    
 def add_a_guess(guesses_taken):
     guesses_taken += 1
     return guesses_taken
@@ -28,7 +28,7 @@ def right_or_wrong(guesses_taken, max_guesses, rand_num, chosen_num):
     if rand_num != chosen_num and guesses_taken == max_guesses:
         print('The maximum number of ' + str(max_guesses) + ' guesses has been reached. The number I was thinking of was ' + str(rand_num) + '.')
 
-def is_correct(correct_guess, rand_num, chosen_num):
+def is_correct(rand_num, chosen_num):
     if rand_num == chosen_num:
         correct_guess = True
     if rand_num != chosen_num:
@@ -53,6 +53,6 @@ while play.lower() == 'y':
         guesses_taken = add_a_guess(guesses_taken)
         high_or_low(rand_num, chosen_num)
         right_or_wrong(guesses_taken, max_guesses, rand_num, chosen_num)
-        correct_guess = is_correct(correct_guess, rand_num, chosen_num)
+        correct_guess = is_correct(rand_num, chosen_num)
     play = play_again(play)
 print('')
