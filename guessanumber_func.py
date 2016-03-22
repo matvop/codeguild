@@ -9,7 +9,7 @@ def guess(max_guesses, guesses_taken): #should chosen_num be included here? it e
         print('Guess again!')
     chosen_num = int(input())
     return chosen_num
-    
+
 def add_a_guess(guesses_taken):
     guesses_taken += 1
     return guesses_taken
