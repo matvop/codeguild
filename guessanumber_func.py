@@ -40,7 +40,5 @@ while should_loop:
     chosen_num = guess(max_guesses, guesses_taken)
     should_loop = check_guess(guesses_taken, rand_num, last_guess, chosen_num, max_guesses)
     guesses_taken += 1
-    #if rand_num == chosen_num:
-        #guesses_taken = last_guess #used this instead of break
     while guesses_taken == max_guesses and should_loop:
         should_loop = end_the_game(guesses_taken, max_guesses, should_loop, rand_num, chosen_num)
