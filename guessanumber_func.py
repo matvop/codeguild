@@ -1,7 +1,5 @@
 #guessanumber_func created by Matt Voelpel 3.21.2016
-#v2 modified to include functions and remove play again
-
-import random, os
+#v2 modified to use functions
 print('')
 def guess(max_guesses, guesses_taken):
     """Prompts the user to guess a number. Returned as chosen_num"""
@@ -41,15 +39,15 @@ def play_again(play):
     play = input('Would you like to play again? [y/n]: ')
     return play
 
+import random
+import os
 play = 'y'
-
 while play.lower() == 'y':
-
+    os.system('cls')
     guesses_taken = 0
     max_guesses = 6
     rand_num = random.randint(1,100)
     correct_guess = False
-
     while guesses_taken < int(max_guesses) and correct_guess != True:
         chosen_num = guess(max_guesses, guesses_taken)
         guesses_taken = add_a_guess(guesses_taken)
