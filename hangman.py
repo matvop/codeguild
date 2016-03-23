@@ -1,6 +1,7 @@
 #Hangman game created by Matt Voelpel on 3.22.2016
 import random
 import os
+import winsound
 correct_letters = []
 missed_letters = []
 mistakes_made = 0
@@ -126,7 +127,7 @@ hang_a_man = ("""
 
 def random_word_list():
     """Selects a word at random from words and returns as random_word"""
-    words = ['CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER', 'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS', 'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT', 'LOOP']
+    words = ['CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER', 'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS', 'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT', 'LOOP', 'DICTIONARY', 'LIST', 'TERMINAL', 'ARGUMENT', 'TUPLE', 'COMPILE', 'IMUTABLE', 'MODULE', 'NESTED', 'RETURN', 'SHELL', 'SOURCE', 'PARSE', 'STATEMENT', 'VARIABLE', ]
     #random_word = words[random.randint(0,len(words)-1)]# - my original method of selecting a random word
     random_word = random.choice(words) #more efficient method of selecing a random word
     return random_word
@@ -164,24 +165,40 @@ def correct_word(secret_word, correct_letters):
             blanks_and_letters += '_ '
     return blanks_and_letters.replace(' ','').replace('_','')
 
-# def play_again(play):
-#     play = input('Would you like to play again? [y/n]: ')
-#     return play
+def play_again(play):
+    play = input('Would you like to play again? [y/n]: ')
+    global mistakes_made
+    mistakes_made = 0
+    global missed_letters
+    missed_letters = []
+    global correct_letters
+    correct_letters = []
+    return play
 
-secret_word = random_word_list() #chooses the secret word from the random word list
-print('')
-while mistakes_made < (len(hang_a_man)): #game loop
-    os.system('cls')
-    print("Let's play Hangman!")
-    print(hang_a_man[mistakes_made])
-    if secret_word == correct_word(secret_word, correct_letters):
-        print('Congratulations, you guessed ' + secret_word + ' correctly! Here, have a beer!')
-        print(mug_of_beer)
-        break
-    blanks_and_correct_letters(secret_word, correct_letters)
-    print(', '.join(missed_letters))
-    guess_a_letter(secret_word, correct_letters, missed_letters)
-    #could insert a function that prints out a visual depiction of a hangman here
-else:
-    print('You did not guess the word {}. Better luck next time!'.format(secret_word))
-print('')
+def tada():
+    winsound.PlaySound('C:\\Windows\\Media\\tada.wav', winsound.SND_FILENAME)
+def chord():
+    winsound.PlaySound('C:\Windows\Media\chord.wav', winsound.SND_FILENAME)
+
+play = 'y'
+while play.lower() == 'y':
+    secret_word = random_word_list() #chooses the secret word from the random word list
+    print('')
+    while mistakes_made < (len(hang_a_man)): #game loop
+        os.system('cls')
+        print("Let's play Hangman!")
+        print(hang_a_man[mistakes_made]) #prints out the hangman picture at the same position as the # of mistakes made
+        if secret_word == correct_word(secret_word, correct_letters):
+            print('Congratulations, you guessed ' + secret_word + ' correctly! Here, have a beer!')
+            print(mug_of_beer)
+            tada()
+            play = play_again(play)
+            break
+        blanks_and_correct_letters(secret_word, correct_letters)
+        print(', '.join(missed_letters))
+        guess_a_letter(secret_word, correct_letters, missed_letters)
+    else:
+        print('You did not guess the word {}. Better luck next time!'.format(secret_word))
+        chord()
+        play = play_again(play)
+    print('')
