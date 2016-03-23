@@ -1,16 +1,41 @@
 #Hangman game created by Matt Voelpel on 3.22.2016
 import random
+import os
 correct_letters = []
 missed_letters = []
 mistakes_made = 0
-
-def random_word_dict():
-    word = ['CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER', 'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS', 'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT', 'LOOP']
-    random_word = word[random.randint(0,17)]
+mug_of_beer = '''
+             _, . '__ .
+          '_(_0o),(__)o().
+        ,o(__),_)o(_)O,(__)o
+      o(_,-o(_ )(),(__(_)oO)_
+      .O(__)o,__).(_ )o(_)Oo_)
+  .----|   |   |   |   |   |_)0
+ /  .--|   |   |   |   |   |,_)
+|  /   |   |   |   |   |   |o(_)
+|  |   |   |   |   |   |   |_/`)
+|  |   |   |   |   |   |   |O_)
+|  |   |   |   |   |   |   |
+|  |   |   |   |   |   |   |
+|  |   |   |   |   |   |   |
+|  \   |   |   |   |   |   |
+ \  '--|   |   |   |   |   |
+  '----|   |   |   |   |   |
+       |   |   |   |   |   |
+       |   |   |   |   |   |
+       |   |   |   |   |   |
+       \   \   \   /   /   /
+        `"""""""""""""""""`
+'''
+def random_word_list():
+    """Selects a word at random from words and returns as random_word"""
+    words = ['CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER', 'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS', 'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT', 'LOOP']
+    random_word = words[random.randint(0,len(words))]# - my original method of selecting a random word
+    #random_word = random.choice(words) #more efficient method of selecing a random word
     return random_word
 
 def blanks_and_correct_letters(secret_word, correct_letters):
-    """Create a new list based off of word_length or secret_word_as_list and replace values with underscores"""
+    """Coverts letters in the secret_word to underscores(blanks) and replaces blanks with correct_letters when chosen"""
     blanks_and_letters = ''
     for letter in secret_word:
         if letter in correct_letters:
@@ -20,8 +45,9 @@ def blanks_and_correct_letters(secret_word, correct_letters):
     print(blanks_and_letters)
 
 def guess_a_letter(secret_word, correct_letters, missed_letters):
-    """Shows player blanks and prompts them to guess a letter. Mistakes are tallied for incorrect guesses"""
+    """Prompts them to guess a letter. Mistakes are tallied for incorrect guesses"""
     letter_guess = input('Please choose a letter: ').upper()
+    print('')
     if letter_guess in secret_word:
         correct_letters.append(letter_guess)
     else:
@@ -30,7 +56,7 @@ def guess_a_letter(secret_word, correct_letters, missed_letters):
         mistakes_made += 1
 
 def correct_word(secret_word, correct_letters):
-    """Create a new list based off of word_length or secret_word_as_list and replace values with underscores"""
+    """Converts the correctly guessed letters back into a word."""
     blanks_and_letters = ''
     for letter in secret_word:
         if letter in correct_letters:
@@ -39,15 +65,23 @@ def correct_word(secret_word, correct_letters):
             blanks_and_letters += '_ '
     return blanks_and_letters.replace(' ','').replace('_','')
 
+# def play_again(play):
+#     play = input('Would you like to play again? [y/n]: ')
+#     return play
+
 print('')
-secret_word = random_word_dict()
-while mistakes_made < 7:
+os.system('cls')
+secret_word = random_word_list() #chooses the secret word from the random word list
+print("It's time to play Hangman.")
+print('')
+while mistakes_made < 7: #game loop
     if secret_word == correct_word(secret_word, correct_letters):
-        print('Congratulations, you guessed ' + secret_word + ' correctly!')
+        print('Congratulations, you guessed ' + secret_word + ' correctly! Here, have a beer!')
+        print(mug_of_beer)
         break
     blanks_and_correct_letters(secret_word, correct_letters)
     print(', '.join(missed_letters))
     guess_a_letter(secret_word, correct_letters, missed_letters)
 else:
-    print('You did not guess the word {}'.format(secret_word))
+    print('You did not guess the word {}. Better luck next time!'.format(secret_word))
 print('')
