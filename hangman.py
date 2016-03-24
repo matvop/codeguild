@@ -28,7 +28,8 @@ mug_of_beer = '''
        \   \   \   /   /   /
         `"""""""""""""""""`
 '''
-hang_a_man = ("""
+hang_a_man = (
+"""
 -----
 |   |
 |
@@ -155,7 +156,7 @@ def guess_a_letter(secret_word, correct_letters, missed_letters):
         global mistakes_made
         mistakes_made += 1
 
-def correct_word(secret_word, correct_letters):
+def guessed_word(secret_word, correct_letters):
     """Converts the correctly guessed letters back into a word."""
     blanks_and_letters = ''
     for letter in secret_word:
@@ -177,18 +178,21 @@ def play_again(play):
 
 def tada():
     winsound.PlaySound('C:\\Windows\\Media\\tada.wav', winsound.SND_FILENAME)
-def chord():
-    winsound.PlaySound('C:\Windows\Media\chord.wav', winsound.SND_FILENAME)
+def wa_wa_wa():
+    winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\wa_wa_wa.wav', winsound.SND_FILENAME)
+def bg_music():
+    winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\hang_em_high.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 play = 'y'
 while play.lower() == 'y':
+    bg_music()
     secret_word = random_word_list() #chooses the secret word from the random word list
     print('')
     while mistakes_made < (len(hang_a_man)): #game loop
         os.system('cls')
         print("Let's play Hangman!")
         print(hang_a_man[mistakes_made]) #prints out the hangman picture at the same position as the # of mistakes made
-        if secret_word == correct_word(secret_word, correct_letters):
+        if secret_word == guessed_word(secret_word, correct_letters):
             print('Congratulations, you guessed ' + secret_word + ' correctly! Here, have a beer!')
             print(mug_of_beer)
             tada()
@@ -199,6 +203,6 @@ while play.lower() == 'y':
         guess_a_letter(secret_word, correct_letters, missed_letters)
     else:
         print('You did not guess the word {}. Better luck next time!'.format(secret_word))
-        chord()
+        wa_wa_wa()
         play = play_again(play)
     print('')
