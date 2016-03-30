@@ -17,7 +17,7 @@ while run.lower() == 'y':
     english_sentence = input()
     sentence_split = english_sentence.split()
     new_sentence = []
-
+    
     for word in sentence_split:
         if word[0] in 'aeiou':
             new_sentence.append(word + 'way')
