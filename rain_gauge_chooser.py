@@ -1,26 +1,35 @@
+###City of Portland - Hydra Network Rain Gauge scraper
+###Retrieves hourly updated rain gauge data from or.water.usgs.gov(internet connection required)
+###Supports user selection of a specific rain gauge station
+###Currently outputs the street address of the selected location, date of most rainfall and amount of rain, location's wettest year and amount of rain
+###future revisions may include ability to notify user if location has been retired, and that data is for historic purposes
+
 import urllib.request
 import os
 
 def parse_index_url_into_lines():
+    """Parses the main Oregon usgs rain station index webpage into a list of lines"""
     with urllib.request.urlopen('http://or.water.usgs.gov/non-usgs/bes/') as data_file:
         all_gauges_line_data = [byte_line.decode('utf-8') for byte_line in data_file]
     return all_gauges_line_data
 
 def parse_page_url_into_lines():
+    """Parses the user selected rain station data into a list of lines"""
     with urllib.request.urlopen(get_url()) as rain_file:
         rain_line_data = [byte_line.decode('utf-8') for byte_line in rain_file]
     return rain_line_data
 
 def get_url():
+    """retrives the .rain file url by using the users station_num input in select_rain_gauge()"""
     d = create_rain_gauge_dict()
     station_num = select_rain_gauge(d)
     url = d[station_num][1]
     return url
-    # [d[station_num] for station in d]
 
 def select_rain_gauge(rain_gauge_dict):
+    """Provides the user with a table of available rain stations by their id# and location, and .rain file url. Prompts the user for station id# and returns response."""
     print('')
-    print('{:<15} {:<40} {:<40}'.format('Station #:','Location:','URL:'))
+    print('{:<15} {:<40} {:<40}'.format('Station id#:','Location:','URL:'))
     print('')
     for k, v in rain_gauge_dict.items():
         location, url = v
@@ -31,6 +40,7 @@ def select_rain_gauge(rain_gauge_dict):
     > """)
 
 def create_list_of_urls(truncated_html_source_lines):
+    """Creates and returns a list of urls by piecing together .rain filenames, available in the HTML, with known url prefix. Also removes some erroneuos/retired data from the list."""
     line_num = 0
     url_list = []
     url_prefix = 'http://or.water.usgs.gov/non-usgs/bes/'
@@ -47,6 +57,7 @@ def create_list_of_urls(truncated_html_source_lines):
     return completed_list_of_urls
 
 def create_list_of_locations(truncated_html_source_lines):
+    """Creates a list of rain gauge location names by locating a specific string 'Rain Gage<br>' inside the HTML. A list lines is created from the matching truncated_html_source_lines. The lines are then cleaned of uneeded characters and returned into a location_list"""
     line_num = 0
     location_list = []
     location_search_string = 'Rain Gage<br>'
@@ -116,10 +127,10 @@ def display_rainiest_year(years_and_amounts):
     y = (e.get(x) * .01)
     print("{} was the area's wettest year with a total of {} inches of rain.".format(x,y))
     print('')
-os.system('cls')
 
 play = True
 while play:
+    os.system('cls')
     html_source_lines = parse_index_url_into_lines()
     truncated_html_source_lines = html_source_lines[120:]
     rain_gauge_dict = create_rain_gauge_dict()

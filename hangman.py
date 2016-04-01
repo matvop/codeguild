@@ -1,4 +1,4 @@
-#Hangman game created by Matt Voelpel on 3.22.2016
+#Hangman game created on 3.22.2016
 import random
 import os
 import winsound

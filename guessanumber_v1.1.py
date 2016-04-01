@@ -1,4 +1,4 @@
-#guessanumber v1.1 created by Matt Voelpel 3.16.2016
+#guessanumber v1.1 created 3.16.2016
 #updated to include
 import random
 print('')

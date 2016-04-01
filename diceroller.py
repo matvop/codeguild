@@ -1,4 +1,4 @@
-#dice roller program created by Matt Voelpel 3.16.2016
+#dice roller program 
 print('')
 print('')
 import random

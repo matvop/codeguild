@@ -1,4 +1,4 @@
-#guessanumber_func created by Matt Voelpel 3.21.2016
+#guessanumber_func created 3.21.2016
 #modified to use functions
 print('')
 import random #import the random module so that the secret number can be generated

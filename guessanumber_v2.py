@@ -1,4 +1,4 @@
-#guessanumber v2 created by Matt Voelpel 3.16.2016
+#guessanumber v2 created 3.16.2016
 #modified to include an option to play again and allow an easy way to
 #adjust the max # of guesses - future updates: prevent error from improper
 #keystroke entry

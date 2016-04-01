@@ -1,4 +1,4 @@
-#fuel cost trip calculator created by Matt Voelpel 3.16.2016
+#fuel cost trip calculator created 3.16.2016
 print('')
 print('')
 print('This program will attempt to determine the total fuel cost for your road trip.')

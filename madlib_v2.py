@@ -1,4 +1,4 @@
-#madlib program created by Matt Voelpel 3.16.2016
+#madlib program created 3.16.2016
 def get_adj():
     """Prompt user for first adjective"""
     return input('Please enter an adjective: ')
