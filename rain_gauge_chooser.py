@@ -83,9 +83,11 @@ def create_list_of_station_numbers(truncated_html_source_lines):
     return station_number_list
 
 def create_rain_gauge_dict():
+    """Creates and returns a dictionary where the key is the station id numbers and values are locations and urls"""
     return {z[0]:list(z[1:]) for z in zip(create_list_of_station_numbers(truncated_html_source_lines),create_list_of_locations(truncated_html_source_lines),create_list_of_urls(truncated_html_source_lines))}
 
 def get_date_and_total_rain(rain_line_data):
+    """Takes in the rain_line_data and creates/returns a list of tuples that contain dates and the total amount of rain for that date"""
     raw_dates_and_totals = []
     for line in rain_line_data[11:]:
         items_in_line = line.split()
@@ -97,16 +99,19 @@ def get_date_and_total_rain(rain_line_data):
     return dates_and_totals
 
 def print_max_rain_date_and_amount(dates_and_totals):
+    """Prints out which station the user has connected to and prints out some data regarding the rainfall for that location"""
     date,amount = max(dates_and_totals, key=lambda x:int(x[1]))
     inches = (int(amount)/100)
     print('Currently connected to the ' + rain_line_data[0])
     print('The most rainfall, in a single day, was {} inches on {}.'.format(inches,date))
 
 def date_to_year(date):
+    """converts the date into a year"""
     year = date[-4:]
     return year
 
 def date_amount_to_year_amount(date_and_amount):
+    """Creates a tuple of the year and amount of of rain that year. Removes the month and day from the date to get year only. Declears indices for both variables."""
     amount = date_and_amount[1]
     year = date_to_year(date_and_amount[0])
     return (year, amount)

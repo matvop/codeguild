@@ -180,12 +180,12 @@ def tada():
     winsound.PlaySound('C:\\Windows\\Media\\tada.wav', winsound.SND_FILENAME)
 def wa_wa_wa():
     winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\wa_wa_wa.wav', winsound.SND_FILENAME)
-def bg_music():
-    winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\hang_em_high.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
+# def bg_music():
+#     winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\hang_em_high.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 play = 'y'
 while play.lower() == 'y':
-    bg_music()
+    # bg_music()
     secret_word = random_word_list() #chooses the secret word from the random word list
     print('')
     while mistakes_made < (len(hang_a_man)): #game loop
