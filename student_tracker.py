@@ -9,13 +9,11 @@ while accept_input: #enter a while loop here for finding students/classes
     print('Student name?')
     student_name = input()
     accept_input = student_name != 'done'
-    print('what class is ' + student_name + 'in?')
+    print('what class is ' + student_name + ' in?')
     class_name = input()
-
-        old_roster = set()
+    old_roster = set()
     class_name_to_students[class_name]
-    new_roster = old_roster |
-    {student_name}
+    new_roster = old_roster | {student_name}
     class_name_to_roster[class_name]
 
 
