@@ -1,4 +1,5 @@
 import urllib.request
+import os
 
 def parse_index_url_into_lines():
     with urllib.request.urlopen('http://or.water.usgs.gov/non-usgs/bes/') as data_file:
@@ -19,13 +20,14 @@ def get_url():
 
 def select_rain_gauge(rain_gauge_dict):
     print('')
-    print('{:<15} {:<40} {:<40}'.format('Station:','Location:','URL:'))
+    print('{:<15} {:<40} {:<40}'.format('Station #:','Location:','URL:'))
     print('')
     for k, v in rain_gauge_dict.items():
         location, url = v
         print('{:<15} {:<40} {:<40}'.format(k, location, url))
     print('')
     return input("""Rain level data is available for the listed locations. Please select a station:
+
     > """)
 
 def create_list_of_urls(truncated_html_source_lines):
@@ -54,7 +56,7 @@ def create_list_of_locations(truncated_html_source_lines):
         location_raw = decoded_line[4:]
         location_list.append(location_raw[:-6])
         line_num += 1
-    location_list = [i.split('<', 1)[0] for i in location_list]
+    location_list = [i.split('Rain Gage<br>', 1)[0] for i in location_list]
     return location_list
 
 def create_list_of_station_numbers(truncated_html_source_lines):
@@ -114,6 +116,7 @@ def display_rainiest_year(years_and_amounts):
     y = (e.get(x) * .01)
     print("{} was the area's wettest year with a total of {} inches of rain.".format(x,y))
     print('')
+os.system('cls')
 
 play = True
 while play:
@@ -126,7 +129,7 @@ while play:
     years_and_amounts = dates_to_years(dates_and_totals)
     convert_to_dict(years_and_amounts)
     display_rainiest_year(years_and_amounts)
-    yayornay = input('Would you like to check another station? [y/n] ').lower()
+    yayornay = input('Would you like to check another station? [y/n]: ').lower()
     if yayornay == 'y':
         play = True
     else:
