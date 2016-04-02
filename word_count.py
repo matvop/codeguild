@@ -8,7 +8,7 @@ words_and_counts={} #creates an empty dict called words_and_counts
 word = ''
 
 def parse_txt_into_list_of_lines():
-    with open('p_and_p.txt') as p_and_p: #opens and reads p_and_p.txt to memory as var p_and_p
+    with open('C:\Users\Matt\codeguild\extras\p_and_p.txt') as p_and_p: #opens and reads p_and_p.txt to memory as var p_and_p
         book_line_data = p_and_p.readlines() #creates a list of values from the lines in p_and_p called book_line_data
     return book_line_data
 def normalize_word(word):
