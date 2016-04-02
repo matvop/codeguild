@@ -1,3 +1,4 @@
+#Please refer to rain_scraper(previously named rain_gauge_chooser.py)
 import urllib.request
 
 def parse_page_url_into_lines():
