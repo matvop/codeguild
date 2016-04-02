@@ -28,14 +28,12 @@ def get_url():
 
 def select_rain_gauge(rain_gauge_dict):
     """Provides the user with a table of available rain stations by their id# and location, and .rain file url. Prompts the user for station id# and returns response."""
-    print('')
-    print('{:<15} {:<40} {:<40}'.format('Station id#:','Location:','URL:'))
-    print('')
+    print('\n{:<15} {:<40} {:<40}'.format('Station id#:','Location:','URL:\n'))
     for k, v in rain_gauge_dict.items():
         location, url = v
         print('{:<15} {:<40} {:<40}'.format(k, location, url))
     print('')
-    return input("""Rain level data is available for the listed locations. Please select a station:
+    return input("""Rain level data is available for the listed locations. Please enter station id#:
 
     > """)
 
@@ -47,8 +45,8 @@ def create_list_of_urls(truncated_html_source_lines):
     url_search_string = '.rain'
     matching_url = [s for s in truncated_html_source_lines if url_search_string in s]
     for line in matching_url:
-        decoded_line = matching_url[line_num]
-        url_raw = decoded_line[26:]
+        location_line = matching_url[line_num]
+        url_raw = location_line[26:]
         url_list.append(url_raw[:-22])
         line_num += 1
     url_list.pop(url_list.index('rover.rain'))
@@ -58,28 +56,32 @@ def create_list_of_urls(truncated_html_source_lines):
 
 def create_list_of_locations(truncated_html_source_lines):
     """Creates a list of rain gauge location names by locating a specific string 'Rain Gage<br>' inside the HTML. A list lines is created from the matching truncated_html_source_lines. The lines are then cleaned of uneeded characters and returned into a location_list"""
-    line_num = 0
-    location_list = []
+    # line_num = 0
+    # location_list = []
     location_search_string = 'Rain Gage<br>'
-    matching_location = [s for s in truncated_html_source_lines if location_search_string in s]
-    for line in matching_location:
-        decoded_line = matching_location[line_num]
-        location_raw = decoded_line[4:]
-        location_list.append(location_raw[:-6])
-        line_num += 1
+    lines_with_rain_gauge_address = [s for s in truncated_html_source_lines if location_search_string in s]
+    location_raw = [line[4:] for line in lines_with_rain_gauge_address]
+    location_list = [line for line in location_raw[:-6]]
+    # for line in lines_with_rain_gauge_address:
+    #     location_line = lines_with_rain_gauge_address[line_num]
+    #     location_raw = location_line[4:]
+    #     location_list.append(location_raw[:-6])
+    #     line_num += 1
     location_list = [i.split('Rain Gage<br>', 1)[0] for i in location_list]
     return location_list
 
 def create_list_of_station_numbers(truncated_html_source_lines):
-    station_line_num = 0
-    station_number_list = []
+    # station_line_num = 0
+    # station_number_list = []
     station_number_indices = [(i+1) for i, s in enumerate(truncated_html_source_lines) if 'Rain Gage<br>' in s]
     station_number_lines = [truncated_html_source_lines[i] for i in station_number_indices]
-    for line in station_number_lines:
-        station_line = station_number_lines[station_line_num]
-        station_number_raw = station_line[17:]
-        station_number_list.append(station_number_raw[:-6])
-        station_line_num +=1
+    station_number_raw = [line[17:] for line in station_number_lines]
+    station_number_list = [line[:-6] for line in station_number_raw]
+    # for line in station_number_lines:
+    #     # station_line = station_number_lines[station_line_num]
+    #     # station_number_raw = station_line[17:]
+    #     station_number_list.append(station_number_raw[:-6])
+    #     station_line_num +=1
     return station_number_list
 
 def create_rain_gauge_dict():
@@ -106,7 +108,9 @@ def date_to_year(date):
     year = date[-4:]
     return year
 
+# [date[-4] for date in date_and_amount[0]]
 def date_amount_to_year_amount(date_and_amount):
+    """brings in the date_and_amount tuple and returns only the year and """
     amount = date_and_amount[1]
     year = date_to_year(date_and_amount[0])
     return (year, amount)
@@ -125,8 +129,7 @@ def display_rainiest_year(years_and_amounts):
     e = {k:sum(v) for k,v in d.items()} #sums together all the values for each key
     x = max(e, key=e.get)
     y = (e.get(x) * .01)
-    print("{} was the area's wettest year with a total of {} inches of rain.".format(x,y))
-    print('')
+    print("{} was the area's wettest year with a total of {} inches of rain.\n".format(x,y))
 
 play = True
 while play:
