@@ -57,6 +57,7 @@ def create_list_of_locations(truncated_html_source_lines):
     return location_list
 
 def create_list_of_station_numbers(truncated_html_source_lines):
+    """Finds the index postions of the lines in the html source line list which contain the matching partial string and increases the index pos by 1 to reach the line that contains station id"""
     station_number_indices = [(i+1) for i, s in enumerate(truncated_html_source_lines) if 'Rain Gage<br>' in s]
     station_number_lines = [truncated_html_source_lines[i] for i in station_number_indices]
     station_number_raw = [line[17:] for line in station_number_lines]
@@ -68,9 +69,11 @@ def create_rain_gauge_dict():
 
 def get_date_and_total_rain(rain_line_data):
     raw_dates_and_totals = []
-    # items_in_line = [line.split() for line in rain_line_data[11:]]
-    # date = [i for i in items_in_line[0]]
-    # amount = [i for i in items_in_line[1]]
+    # items_in_line = [line[11:].split() for line in rain_line_data]
+    # date = [i[0] for i in items_in_line]
+    # amount = [i[1] for i in items_in_line]
+    # (date,amount) = [(i,i) for i in items_in_line]
+    # print (date,amount)
     # raw_dates_and_totals = [(date,amount) for pair in ]
     for line in rain_line_data[11:]:
         items_in_line = line.split()
@@ -108,7 +111,7 @@ def convert_to_dict(years_and_amounts):
 
 def display_rainiest_year(years_and_amounts):
     d = convert_to_dict(years_and_amounts)
-    e = {k:sum(v) for k,v in d.items()} #sums together all the values for each key
+    e = {year:sum(amount) for year,amount in d.items()} #sums together all the values for each key
     x = max(e, key=e.get)
     y = (e.get(x) * .01)
     print("{} was the area's wettest year with a total of {} inches of rain.\n".format(x,y))
