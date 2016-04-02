@@ -39,16 +39,20 @@ def select_rain_gauge(rain_gauge_dict):
 
 def create_list_of_urls(truncated_html_source_lines):
     """Creates and returns a list of urls by piecing together .rain filenames, available in the HTML, with known url prefix. Also removes some erroneuos/retired data from the list."""
-    line_num = 0
-    url_list = []
+    # line_num = 0
+    # url_list = []
     url_prefix = 'http://or.water.usgs.gov/non-usgs/bes/'
     url_search_string = '.rain'
-    matching_url = [s for s in truncated_html_source_lines if url_search_string in s]
-    for line in matching_url:
-        location_line = matching_url[line_num]
-        url_raw = location_line[26:]
-        url_list.append(url_raw[:-22])
-        line_num += 1
+    lines_with_matching_url = [s for s in truncated_html_source_lines if url_search_string in s]
+    url_raw = [line[26:] for line in lines_with_matching_url]
+    url_list = [line[:-22] for line in url_raw]
+    # url_raw = [line[26:] for line in lines_with_matching_url]
+    # url_list = [line[:-22] for line in lines_with_matching_url]
+    # for line in lines_with_matching_url:
+        # location_line = lines_with_matching_url[line_num]
+        # url_raw = location_line[26:]
+        # url_list.append(url_raw[:-22])
+        # line_num += 1
     url_list.pop(url_list.index('rover.rain'))
     url_list.pop(url_list.index('swan_island.rain'))
     completed_list_of_urls = [url_prefix + url for url in url_list]
@@ -61,13 +65,13 @@ def create_list_of_locations(truncated_html_source_lines):
     location_search_string = 'Rain Gage<br>'
     lines_with_rain_gauge_address = [s for s in truncated_html_source_lines if location_search_string in s]
     location_raw = [line[4:] for line in lines_with_rain_gauge_address]
-    location_list = [line for line in location_raw[:-6]]
+    location_list = [line for line in location_raw]
     # for line in lines_with_rain_gauge_address:
     #     location_line = lines_with_rain_gauge_address[line_num]
     #     location_raw = location_line[4:]
     #     location_list.append(location_raw[:-6])
     #     line_num += 1
-    location_list = [i.split('Rain Gage<br>', 1)[0] for i in location_list]
+    location_list = [i.split('Rain Gage<br>', 1)[0] for i in location_list] #cuts the rest of the junk out of each line
     return location_list
 
 def create_list_of_station_numbers(truncated_html_source_lines):
