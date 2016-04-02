@@ -15,18 +15,21 @@ def parse_index_url_into_lines():
     """Parses Oregon usgs rain station index page into a list of lines"""
     with urllib.request.urlopen(
         'http://or.water.usgs.gov/non-usgs/bes/') as data_file:
-        all_gauges_line_data = [byte_line.decode(
-            'utf-8') for byte_line in data_file]
+        all_gauges_line_data = [
+            byte_line.decode('utf-8') for byte_line in data_file
+        ]
     return all_gauges_line_data
 
 def parse_rain_file_url_into_lines():
     """Parses the user selected rain station data into a list of lines"""
     with urllib.request.urlopen(get_url()) as rain_file:
-        rain_line_data = [byte_line.decode('utf-8') for byte_line in rain_file]
+        rain_line_data = [
+            byte_line.decode('utf-8') for byte_line in rain_file
+        ]
     return rain_line_data
 
 def get_url():
-    """retrives the .rain file url by using the users station_num
+    """retrieves the .rain file url by using the users station_num
     input in select_rain_gauge()"""
     url = create_rain_gauge_dict()[select_rain_gauge()][1]
     return url
@@ -44,8 +47,8 @@ def select_rain_gauge():
 Please enter station id#: """)
 
 def create_list_of_urls(truncated_html_source_lines):
-    """Creates and returns a list of urls by piecing together .rain filenames,
-    available in the HTML, with known url prefix. Removes two erroneuos/retired
+    """Creates and returns a list of urls by piecing together .rain file names,
+    available in the HTML, with known url prefix. Removes two erroneous/retired
     locations from list."""
     url_prefix = 'http://or.water.usgs.gov/non-usgs/bes/'
     url_search_string = '.rain'
@@ -61,12 +64,13 @@ def create_list_of_urls(truncated_html_source_lines):
 
 def create_list_of_locations(truncated_html_source_lines):
     """Creates a list of rain gauge location names by locating a specific
-    string 'Rain Gage<br>' inside the HTML. A list lines is created from the
-    matching truncated_html_source_lines. The lines are then cleaned of uneeded
+    string 'Rain Gage<br>' inside the HTML. A list of lines is created from the
+    matching truncated_html_source_lines. The lines are then cleaned of extra
     characters and returned into a location_list"""
     location_search_string = 'Rain Gage<br>'
     lines_with_rain_gauge_address = [
-        s for s in truncated_html_source_lines if location_search_string in s
+        s for s in truncated_html_source_lines
+            if location_search_string in s
     ]
     location_raw = [line[4:] for line in lines_with_rain_gauge_address]
     location_list = [line for line in location_raw]
@@ -76,13 +80,16 @@ def create_list_of_locations(truncated_html_source_lines):
     return location_list
 
 def create_list_of_station_numbers(truncated_html_source_lines):
-    """Finds the index postions of the lines in the html source line list
+    """Finds the index positions of the lines in the html source line list
     which contain the matching partial string and increases the index pos
     by 1 to reach the line that contains station id"""
-    station_number_indices = [(i+1) for i,
-        s in enumerate(truncated_html_source_lines) if 'Rain Gage<br>' in s]
+    station_number_indices = [
+        (i+1) for i, s in enumerate(
+            truncated_html_source_lines) if 'Rain Gage<br>' in s
+    ]
     station_number_lines = [
-        truncated_html_source_lines[i] for i in station_number_indices]
+        truncated_html_source_lines[i] for i in station_number_indices
+    ]
     station_number_raw = [line[17:] for line in station_number_lines]
     station_number_list = [line[:-6] for line in station_number_raw]
     return station_number_list
@@ -111,7 +118,8 @@ def get_date_and_total_rain(rain_line_data):
         pair = (date,amount)
         raw_dates_and_totals.append(pair)
     dates_and_totals = [tuple(
-        s if s != "-" else "0" for s in pair) for pair in raw_dates_and_totals]
+        s if s != "-" else "0" for s in pair)
+            for pair in raw_dates_and_totals]
     return dates_and_totals
 
 def print_max_rain_date_and_amount(dates_and_totals):
@@ -119,7 +127,9 @@ def print_max_rain_date_and_amount(dates_and_totals):
     inches = (int(amount)/100)
     print('\nCurrently connected to the ' + rain_line_data[0])
     print('The most rainfall, in a single day, was {} inches on {}.'.format(
-        inches,date))
+        inches,date
+        )
+    )
 
 def date_to_year(date):
     year = date[-4:]
