@@ -128,13 +128,22 @@ hang_a_man = (
 
 def random_word_list():
     """Selects a word at random from words and returns as random_word"""
-    words = ['CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER', 'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS', 'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT', 'LOOP', 'DICTIONARY', 'LIST', 'TERMINAL', 'ARGUMENT', 'TUPLE', 'COMPILE', 'IMUTABLE', 'MODULE', 'NESTED', 'RETURN', 'SHELL', 'SOURCE', 'PARSE', 'STATEMENT', 'VARIABLE', ]
-    #random_word = words[random.randint(0,len(words)-1)]# - my original method of selecting a random word
-    random_word = random.choice(words) #more efficient method of selecing a random word
+    words = [
+        'CODING', 'SOFTWARE', 'PYTHON', 'JAVASCRIPT', 'ENGINEER',
+        'DEVELOPER', 'PROGRAMMING', 'FUNCTIONS', 'DJANGO', 'RUBY', 'LITERALS',
+        'ITERABLES', 'OPERATORS', 'BOOLEAN', 'INTEGER', 'STRING', 'FLOAT',
+        'LOOP', 'DICTIONARY', 'LIST', 'TERMINAL', 'ARGUMENT', 'TUPLE',
+        'COMPILE', 'IMUTABLE', 'MODULE', 'NESTED', 'RETURN', 'SHELL',
+        'SOURCE', 'PARSE', 'STATEMENT', 'VARIABLE', 'CLASS'
+    ]
+    # my original method of selecting a random word
+    # random_word = words[random.randint(0,len(words)-1)]
+    random_word = random.choice(words) #more efficient
     return random_word
 
 def blanks_and_correct_letters(secret_word, correct_letters):
-    """Coverts letters in the secret_word to underscores(blanks) and replaces blanks with correct_letters when chosen"""
+    """Coverts letters in the secret_word to underscores(blanks) and
+    replaces blanks with correct_letters when chosen"""
     blanks_and_letters = ''
     for letter in secret_word:
         if letter in correct_letters:
@@ -145,7 +154,8 @@ def blanks_and_correct_letters(secret_word, correct_letters):
     print('')
 
 def guess_a_letter(secret_word, correct_letters, missed_letters):
-    """Prompts them to guess a letter. Mistakes are tallied for incorrect guesses"""
+    """Prompts them to guess a letter. Mistakes are tallied for
+    incorrect guesses"""
     print('')
     letter_guess = input('Please choose a letter: ').upper()
     print('')
@@ -178,22 +188,30 @@ def play_again(play):
 
 def tada():
     winsound.PlaySound('C:\\Windows\\Media\\tada.wav', winsound.SND_FILENAME)
-def wa_wa_wa():
-    winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\wa_wa_wa.wav', winsound.SND_FILENAME)
+# def wa_wa_wa():
+    # winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\wa_wa_wa.wav',
+    #     winsound.SND_FILENAME)
 # def bg_music():
-#     winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\hang_em_high.wav', winsound.SND_FILENAME | winsound.SND_ASYNC)
+#     winsound.PlaySound('C:\\Users\\Matt\\codeguild\\misc\\hang_em_high.wav',
+#         winsound.SND_FILENAME | winsound.SND_ASYNC)
 
 play = 'y'
 while play.lower() == 'y':
     # bg_music()
-    secret_word = random_word_list() #chooses the secret word from the random word list
-    print('')
-    while mistakes_made < (len(hang_a_man)): #game loop
+    # have game choose the secret word from the random word list
+    secret_word = random_word_list()
+    # start the game loop
+    while mistakes_made < (len(hang_a_man)):
         os.system('cls')
-        print("Let's play Hangman!")
-        print(hang_a_man[mistakes_made]) #prints out the hangman picture at the same position as the # of mistakes made
+        # print Let's play hangman!!!
+        print("\nLet's play Hangman!")
+        # print hangman picture at the same position as the # of mistakes made
+        print(hang_a_man[mistakes_made])
         if secret_word == guessed_word(secret_word, correct_letters):
-            print('Congratulations, you guessed ' + secret_word + ' correctly! Here, have a beer!')
+            print(
+                'Congratulations, you guessed ' + secret_word +
+                    ' correctly! Here, have a beer!'
+            )
             print(mug_of_beer)
             tada()
             play = play_again(play)
@@ -202,7 +220,9 @@ while play.lower() == 'y':
         print(', '.join(missed_letters))
         guess_a_letter(secret_word, correct_letters, missed_letters)
     else:
-        print('You did not guess the word {}. Better luck next time!'.format(secret_word))
-        wa_wa_wa()
+        print(
+            'You did not guess the word {}. Better luck next time!\n'
+                .format(secret_word)
+        )
+        # wa_wa_wa()
         play = play_again(play)
-    print('')

@@ -9,13 +9,16 @@
 # Check if enough funds for a withdrawal.
 # Withdraw an allowed amount.
 # Calculate 0.5% interest on the account.
-# Implement a user interface that lets a user pick each of those actions and updates the account. After each action it will print the balance.
+# Implement a user interface that lets a user pick each of those actions and
+# updates the account. After each action it will print the balance.
 #
 # Advanced
 #
-# Save the account balance to a file after each operation. Read that balance on startup so the balance persists across program starts.
+# Save the account balance to a file after each operation.
+# Read that balance on startup so the balance persists across program starts.
 # Add to each account class an account ID number.
-# Allow the user to open more than one account. Let them perform all of the above operations by account number.
+# Allow the user to open more than one account.
+# Let them perform all of the above operations by account number.
 import os
 class Account:
     def setup(self, name, balance):
@@ -46,20 +49,36 @@ user_list.append(int(input('Please enter your 3 digit account number: ')))
 user_list[0] = Account()
 user_list[0].setup('Matt', 0)
 banking = 'y'
-"""create a dict for storage of user's name, balance, and account#. This information should be saved to an external txt."""
+"""create a dict for storage of user's name, balance, and account#. This
+information should be saved to an external txt."""
 while banking.lower() == 'y':
     os.system('cls')
-    print('Welcome {}, would you like to withdraw or deposit funds?'.format(user_list[0].name))
+    print(
+        'Welcome {}, would you like to withdraw or deposit funds?'
+            .format(user_list[0].name)
+    )
     action = int(input("""
     1 - Withdraw
     2 - Deposit
 
     >"""))
     if action == 1:
-        user_list[0].withdraw(int(input('Please enter amount you wish to withdraw: ')))
+        user_list[0].withdraw(
+            int(
+                input(
+                    'Please enter amount you wish to withdraw: '
+                )
+            )
+        )
         banking = input('would you like to make another transaction? [y/n]: ')
     if action == 2:
-        user_list[0].deposit(int(input('Please enter amount you wish to deposit: ')))
+        user_list[0].deposit(
+            int(
+                input(
+                    'Please enter amount you wish to deposit: '
+                )
+            )
+        )
         banking = input('would you like to make another transaction? [y/n]: ')
     else:
         print('Have a nice day! Goodbye.')
