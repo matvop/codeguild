@@ -6,7 +6,7 @@
 # Count how often each unique pair of words is used, then print the most
 #  frequent top 10 out with their counts.
 
-#inactive functions here for now
+# inactive functions here for now
 # import urllib.request
 # def parse_txt_into_list_of_lines():
 # with urllib.request.urlopen(
@@ -21,10 +21,12 @@
 
 from collections import Counter
 
+
 def parse_txt_into_list_of_lines():
     with open('C:\\Users\\Fizix\\Desktop\\pg1342.txt') as p_and_p:
         book_line_data = p_and_p.readlines()
     return book_line_data
+
 
 def split_lines_into_words():
     all_words = []
@@ -32,9 +34,11 @@ def split_lines_into_words():
         all_words += line.split()
     return all_words
 
+
 def normalize_word(word):
     word = word.strip('.,:;"()$-!?<>[]_').lower()
     return word
+
 
 def normalize_words():
     all_cleaned_words = [
@@ -42,13 +46,16 @@ def normalize_words():
     ]
     return all_cleaned_words
 
+
 def count_word_occurrences():
     words_and_counts = Counter(normalize_words())
     return words_and_counts
 
-def print_top_10(n = 10):
+
+def print_top_10(n=10):
     print('\n{:<5} {:<5}'.format('Word:', 'Count:\n'))
     for word, count in count_word_occurrences().most_common(n):
         print('{:<5} {:<5}'.format(word, count))
+
 
 print_top_10()
