@@ -1,7 +1,9 @@
-#Hangman game created on 3.22.2016
+# Hangman game created on 3.22.2016
 import random
 import os
 import winsound
+
+
 correct_letters = []
 missed_letters = []
 mistakes_made = 0
@@ -29,102 +31,103 @@ mug_of_beer = '''
         `"""""""""""""""""`
 '''
 hang_a_man = (
-"""
------
-|   |
-|
-|
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-|
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-|  -+-
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\\
-|
-|
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\\
-|   |
-|   |
-|
-|
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\\
-|   |
-|   |
-|  |
-|  |
-|
---------
-""",
-"""
------
-|   |
-|   0
-| /-+-\\
-|   |
-|   |
-|  | |
-|  | |
-|
---------
-""")
+    """
+    -----
+    |   |
+    |
+    |
+    |
+    |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    |
+    |
+    |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    |  -+-
+    |
+    |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    | /-+-
+    |
+    |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    | /-+-\\
+    |
+    |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    | /-+-\\
+    |   |
+    |   |
+    |
+    |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    | /-+-\\
+    |   |
+    |   |
+    |  |
+    |  |
+    |
+    --------
+    """,
+    """
+    -----
+    |   |
+    |   0
+    | /-+-\\
+    |   |
+    |   |
+    |  | |
+    |  | |
+    |
+    --------
+    """)
+
 
 def random_word_list():
     """Selects a word at random from words and returns as random_word"""
@@ -138,8 +141,9 @@ def random_word_list():
     ]
     # my original method of selecting a random word
     # random_word = words[random.randint(0,len(words)-1)]
-    random_word = random.choice(words) #more efficient
+    random_word = random.choice(words)  # more efficient
     return random_word
+
 
 def blanks_and_correct_letters(secret_word, correct_letters):
     """Coverts letters in the secret_word to underscores(blanks) and
@@ -152,6 +156,7 @@ def blanks_and_correct_letters(secret_word, correct_letters):
             blanks_and_letters += '_ '
     print(blanks_and_letters)
     print('')
+
 
 def guess_a_letter(secret_word, correct_letters, missed_letters):
     """Prompts them to guess a letter. Mistakes are tallied for
@@ -166,6 +171,7 @@ def guess_a_letter(secret_word, correct_letters, missed_letters):
         global mistakes_made
         mistakes_made += 1
 
+
 def guessed_word(secret_word, correct_letters):
     """Converts the correctly guessed letters back into a word."""
     blanks_and_letters = ''
@@ -174,7 +180,8 @@ def guessed_word(secret_word, correct_letters):
             blanks_and_letters += letter + ' '
         else:
             blanks_and_letters += '_ '
-    return blanks_and_letters.replace(' ','').replace('_','')
+    return blanks_and_letters.replace(' ', '').replace('_', '')
+
 
 def play_again(play):
     play = input('Would you like to play again? [y/n]: ')
@@ -185,6 +192,7 @@ def play_again(play):
     global correct_letters
     correct_letters = []
     return play
+
 
 def tada():
     winsound.PlaySound('C:\\Windows\\Media\\tada.wav', winsound.SND_FILENAME)
@@ -210,7 +218,7 @@ while play.lower() == 'y':
         if secret_word == guessed_word(secret_word, correct_letters):
             print(
                 'Congratulations, you guessed ' + secret_word +
-                    ' correctly! Here, have a beer!'
+                ' correctly! Here, have a beer!'
             )
             print(mug_of_beer)
             tada()
@@ -222,7 +230,7 @@ while play.lower() == 'y':
     else:
         print(
             'You did not guess the word {}. Better luck next time!\n'
-                .format(secret_word)
+            .format(secret_word)
         )
         # wa_wa_wa()
         play = play_again(play)

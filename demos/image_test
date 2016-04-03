@@ -1,0 +1,9 @@
+
+def parse_index_url_into_lines():
+    """Parses Oregon usgs rain station index page into a list of lines"""
+    with urllib.request.urlopen(
+        'http://al.robotfuzz.com/~al/random/bad3.png') as data_file:
+        all_gauges_line_data = [
+            byte_line.decode('utf-8') for byte_line in data_file
+        ]
+    print(all_gauges_line_data)

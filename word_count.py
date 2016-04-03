@@ -18,19 +18,6 @@
 #     with open('C:\Users\Matt\codeguild\extras\p_and_p.txt') as p_and_p:
 #         book_line_data = p_and_p.readlines() #creates a list of lines
 #     return book_line_data
-# def count_word_occurrences():
-#     """Counts the occurrences of each word in the normalized_word_list and
-#     creates the dict words_and_counts that contains each word and the # of
-#     times it occurs"""    #use a collections.Counter instead
-#     words_and_counts = {}
-#     for word in normalize_words(): #analyses the values
-#         if word not in words_and_counts:
-#             #add 1 to the count
-#             words_and_counts[word] = 1
-#         else:
-#             #increase the count by 1
-#             words_and_counts[word] += 1
-#     return words_and_counts
 
 from collections import Counter
 
@@ -59,15 +46,9 @@ def count_word_occurrences():
     words_and_counts = Counter(normalize_words())
     return words_and_counts
 
-def print_top_10(n=10):
-    # sorted_by_occurrence = sorted(
-    #     count_word_occurrences().keys(),
-    #     key=count_word_occurrences().get,
-    #     reverse=True
-    # )
-    print('\n{:<5} {:<5}'.format('Word:','Count:\n'))
+def print_top_10(n = 10):
+    print('\n{:<5} {:<5}'.format('Word:', 'Count:\n'))
     for word, count in count_word_occurrences().most_common(n):
         print('{:<5} {:<5}'.format(word, count))
-    # print(sorted_by_occurrence[:10])
 
 print_top_10()

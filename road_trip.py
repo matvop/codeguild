@@ -6,4 +6,5 @@ city_to_accessible_cities = {
   'New York': {'Boston', 'Albany', 'Philadelphia'},
   'Albany': {'Boston', 'New York', 'Portland'},
   'Portland': {'Boston', 'Albany'},
-  'Philadelphia': {'New York'}
+  'Philadelphia': {'New York'
+}

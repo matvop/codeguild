@@ -1,7 +1,8 @@
 #fuel cost trip calculator created 3.16.2016
 print('')
 print('')
-print('This program will attempt to determine the total fuel cost for your road trip.')
+print('This program will attempt to determine the total fuel cost '
+    + 'for your road trip.')
 print('Please answer the following questions...')
 
 print('')
