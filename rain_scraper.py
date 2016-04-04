@@ -5,8 +5,8 @@
 # Currently outputs the street address selected location,
 # date of most rainfall - amount of rain, and the location's wettest year
 # and amount of rain for that year
-# future revisions may include ability to notify user if
-# location has been retired, and that data is for historic purposes
+# possible revisions: average rainfall for chosen date, ability to notify
+# user if location has been retired, weather prediction
 
 import urllib.request
 import os
@@ -67,11 +67,6 @@ def create_rain_gauge_dict():
             completed_list_of_urls)}
 
 
-def make_it_rain():
-    display_gauges()
-    display_rain_info()
-
-
 def display_gauges():
     """Provide the user with a table of available rain stations by their
     id#, location, and .rain file url."""
@@ -83,11 +78,15 @@ def display_gauges():
     print('')
 
 
-# def date_amount_to_year_amount(date_and_amount):
-#     amount = date_and_amount[1]
-#     year = date_and_amount[0][-4:]
-#     return (year, amount)
+def date_amount_to_year_amount(date_and_amount):
+    amount = date_and_amount[1]
+    year = date_and_amount[0][-4:]
+    return (year, amount)
 
+def date_amount_to_day_month_amount(date_and_amount):
+    amount = date_and_amount[1]
+    day_month = date_and_amount[0][:-5]
+    return (day_month, amount)
 
 def display_rain_info():
     rain_line_data = parse_rain_file_url()
@@ -104,12 +103,25 @@ def display_rain_info():
             for pair in raw_dates_and_totals]
     date, amount = max(dates_and_totals, key=lambda x: int(x[1]))
     inches = (int(amount) * .01)
+    todays_date = rain_line_data[11][:6]
+    matching_dates = []
+    todays_date_and_amounts = [date_amount_to_day_month_amount(pair)
+                               for pair in dates_and_totals]
+    same_days_and_amounts = []
+    for pair in todays_date_and_amounts:
+        if todays_date in pair:
+            matching_dates.append(pair)
+    historic_rain_today = (sum([int(i[1]) for i in matching_dates]))
+    average = int(historic_rain_today/ len(matching_dates))
+    avg_converted = str(average * .01)
+    print('Historically, for this location, the average rainfall '
+          'on ' + todays_date + ' is ' + avg_converted + ' inches.')
     print('The most rainfall, in a single day,'
           ' was {} inches on {}.'.format(inches, date))
-    # years_and_amounts = [date_amount_to_year_amount(pair)
-    #                      for pair in dates_and_totals]
-    years_and_amounts = [(pair[0][-4:], pair[1]) for pair
-                          in dates_and_totals if len(pair) > 1]
+    years_and_amounts = [date_amount_to_year_amount(pair)
+                         for pair in dates_and_totals]
+    # years_and_amounts = [(pair[0][-4:], pair[1]) for pair
+    #                       in dates_and_totals if len(pair) > 1]
     # convert the tuples to a dict
     d = {}
     for year, amount in years_and_amounts:
@@ -122,13 +134,17 @@ def display_rain_info():
     y = (e.get(x) * .01)
     print("{} was the area's wettest year with "
           'a total of {} inches of rain.\n'.format(x, y))
+    return dates_and_totals
 
+# def build_lists():
+#     raw_dates_and_totals
 
 gauge_dict = create_rain_gauge_dict()
 rain = True
 while rain:
     os.system('cls')
-    make_it_rain()
+    display_gauges()
+    display_rain_info()
     yayornay = input('Would you like to check another station? [y/n]: '
                      ).lower()
     if yayornay == 'y':
