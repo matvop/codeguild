@@ -134,10 +134,7 @@ def display_rain_info():
     y = (e.get(x) * .01)
     print("{} was the area's wettest year with "
           'a total of {} inches of rain.\n'.format(x, y))
-    return dates_and_totals
 
-# def build_lists():
-#     raw_dates_and_totals
 
 gauge_dict = create_rain_gauge_dict()
 rain = True
