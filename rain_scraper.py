@@ -33,18 +33,15 @@ def parse_rain_file_url():
 
 def create_rain_gauge_dict():
     html_source_lines = parse_index_url()
-    """Find the index positions of the lines in the html source line list
-    which contain the matching partial string and increases the index pos
-    by 1 to reach the line that contains station id"""
+    """Find the index positions lines in the html source which contain the
+    string. Increases the index pos by 1 to reach the station id line"""
     station_indices = [(i+1) for i, s in enumerate(html_source_lines) if
                        'Rain Gage<br>' in s]
     station_number_lines = [html_source_lines[i] for i in station_indices]
     station_number_raw = [line[17:] for line in station_number_lines]
     station_number_list = [line[:-6] for line in station_number_raw]
-    """Create a list of rain gauge location names by locating a specific
-    string 'Rain Gage<br>' inside the HTML. A list of lines is created from
-    the matching html_source_lines. The lines are then cleaned of extra
-    characters and returned into a location_list"""
+    """Create a list of location names using same method. Lines are then
+    cleaned of extra characters and returned into a location_list"""
     location_search_string = 'Rain Gage<br>'
     lines_with_rain_gauge_address = [line for line in html_source_lines
                                      if location_search_string in line]
@@ -53,9 +50,8 @@ def create_rain_gauge_dict():
     # cuts the rest of the junk out of each line
     location_list = [i.split('Rain Gage<br>', 1)[0]
                      for i in location_list]
-    """Create and returns a list of urls by piecing together .rain file
-    names, available in the HTML, with known url prefix. Remove two
-    erroneous/retired locations from list."""
+    """Create and return a list of urls from .rain file names, with known
+    url prefix. Remove two erroneous locations from list."""
     url_prefix = 'http://or.water.usgs.gov/non-usgs/bes/'
     url_search_string = '.rain'
     lines_with_matching_url = [line for line in html_source_lines
@@ -78,7 +74,7 @@ def make_it_rain():
 
 def display_gauges():
     """Provide the user with a table of available rain stations by their
-    id#, location, and .rain file url. Prompts user for station id#"""
+    id#, location, and .rain file url."""
     print('\n{:<15} {:<40} {:<40}'.format('Station id#:', 'Location:',
                                           'URL:\n'))
     for k, v in gauge_dict.items():
@@ -87,23 +83,16 @@ def display_gauges():
     print('')
 
 
-def date_amount_to_year_amount(date_and_amount):
-    """bring in the date_and_amount tuple and returns only the year and """
-    amount = date_and_amount[1]
-    year = date_and_amount[0][-4:]
-    return (year, amount)
+# def date_amount_to_year_amount(date_and_amount):
+#     amount = date_and_amount[1]
+#     year = date_and_amount[0][-4:]
+#     return (year, amount)
 
 
 def display_rain_info():
     rain_line_data = parse_rain_file_url()
     print('\nCurrently connected to the ' + rain_line_data[0])
     raw_dates_and_totals = []
-    # items_in_line = [line[11:].split() for line in rain_line_data]
-    # date = [i[0] for i in items_in_line]
-    # amount = [i[1] for i in items_in_line]
-    # (date, amount) = [(i, i) for i in items_in_line]
-    # print (date, amount)
-    # raw_dates_and_totals = [(date, amount) for pair in ]
     for line in rain_line_data[11:]:
         items_in_line = line.split()
         date = items_in_line[0]
@@ -115,10 +104,12 @@ def display_rain_info():
             for pair in raw_dates_and_totals]
     date, amount = max(dates_and_totals, key=lambda x: int(x[1]))
     inches = (int(amount) * .01)
-    print('The most rainfall, in a single day, was {} inches on {}.'
-          .format(inches, date))
-    years_and_amounts = [date_amount_to_year_amount(pair)
-                         for pair in dates_and_totals]
+    print('The most rainfall, in a single day,'
+          ' was {} inches on {}.'.format(inches, date))
+    # years_and_amounts = [date_amount_to_year_amount(pair)
+    #                      for pair in dates_and_totals]
+    years_and_amounts = [(pair[0][-4:], pair[1]) for pair
+                          in dates_and_totals if len(pair) > 1]
     # convert the tuples to a dict
     d = {}
     for year, amount in years_and_amounts:
@@ -129,9 +120,8 @@ def display_rain_info():
     x = max(e, key=e.get)
     # find the amount of rain for that year
     y = (e.get(x) * .01)
-    print(
-        "{} was the area's wettest year with a total of {} inches of rain.\n"
-        .format(x, y))
+    print("{} was the area's wettest year with "
+          'a total of {} inches of rain.\n'.format(x, y))
 
 
 gauge_dict = create_rain_gauge_dict()
