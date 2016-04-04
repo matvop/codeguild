@@ -1,4 +1,4 @@
-# Please refer to rain_scraper(previously named rain_gauge_chooser.py)
+# Please refer to rain_scraper (previously named rain_gauge_chooser.py)
 # kept for review history purposes
 import urllib.request
 
