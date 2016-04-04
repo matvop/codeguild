@@ -21,12 +21,13 @@
 # Let them perform all of the above operations by account number.
 import os
 class User:
-    def setup(self, account_num, name, balance):
+    def setup(self, account_num, name, balance, pin):
         """Return a User object whose name is *name* and starting
         balance is *balance*."""
         self.account_num = account_num
         self.name = name
-        self.balance = balance
+        self.balance = database[me.account_num][1]
+        self.pin = database[me.account_num][1]
 
     def withdraw(self, amount):
         """Return the balance remaining after withdrawing *amount*
@@ -44,48 +45,70 @@ class User:
         print('Your current balance is: {}'.format(self.balance))
         return self.balance
 
-def check_system_for_account():
-    """create a dict for storage of user's name, balance, and account#. This
-    information should be saved to an external txt."""
-    account_dict = {a123:['Matt', 0], a234:['John', 0], a345:['Mary', 0]}
-    me.account_num = input(
-        'Please enter your 4 digit account number(ex:a132): ')
-    # for k in account_dict:
-    #     print(k)
-        # if me.account_num == k:
-        #     me.setup(me.account_num,
-        #     account_dict[me.account_num][0],
-        #     account_dict[me.account_num][1])
+    def session(self, database):
+        """create a dict for storage of user's name, balance, and account#.
+        This information should be saved to an external txt."""
+        self.account_num = input(
+            'Please enter your account number (e.g. a428): ')
+
+    def security(self, database):
+        if self.pin in database.values():
+            return True
+        else:
+            return False
+
+            print('dude, wtf?!')
+            print('\nAccount ' + self.account_num + ' has been verified.\n')
+        # else:
+        #     # enter name and have system generate a new account# based on
+        #     # a-z100-999  with blanace 0
+        #     print('You have entered an incorrect pin. Goodbye.')
         # else:
         #     # enter name and have system generate a new account# based on
         #     # a-z100-999  with blanace 0
         #     print('create new account here :)')
-        #     break
 
-# os.system('cls')
-# me = User()
-# banking = 'y'
-# while banking.lower() == 'y':
-#     os.system('cls')
-#     check_system_for_account()
-#     print(
-#         'Welcome {}, would you like to withdraw or deposit funds?'
-#             .format(me.name)
-#     )
-#     action = int(input("""
-#     1 - Withdraw
-#     2 - Deposit
-#     3 - Check Balance
-#
-#     >"""))
-#     if action == 1:
-#         me.withdraw(int(input('Please enter amount you wish to withdraw: ')))
-#         banking = input('would you like to make another transaction? [y/n]: ')
-#     if action == 2:
-#         me.deposit(int(input('Please enter amount you wish to deposit: ')))
-#         banking = input('would you like to make another transaction? [y/n]: ')
-#     if action == 3:
-#         print(me.balance())
-#     else:
-#         print('Have a nice day! Goodbye.')
-#         banking = 'n'
+
+def open_account_database():
+    with open('account_database.txt') as data_file:
+        database = eval(data_file.read())
+        return database
+
+
+# database = {'a123':['Matt', 0, '1234'], 'a234':['John', 0,
+#     '2345'], 'a345':['Mary', 0, '3456']}
+database = open_account_database()
+me = User()
+banking = 'y'
+while banking.lower() == 'y':
+    os.system('cls')
+    me.setup(
+        me.account_num,
+        database[me.account_num][0],
+        database[me.account_num][1],
+        database[me.account_num][2])
+    print(
+        'Welcome {}, would you like to do today?'
+            .format(me.name)
+    )
+    action = int(input("""
+    1 - Withdraw            4 - Calculate interest on balance
+    2 - Deposit             5 - Exit
+    3 - Check balance
+
+
+    >"""))
+    if action == 1:
+        me.withdraw(int(input('Please enter amount you wish to withdraw: ')))
+        banking = input('would you like to make another transaction? [y/n]: ')
+    if action == 2:
+        me.deposit(int(input('Please enter amount you wish to deposit: ')))
+        banking = input('would you like to make another transaction? [y/n]: ')
+    if action == 3:
+        print(me.balance)
+        banking = input('would you like to make another transaction? [y/n]: ')
+    if action == 4:
+        print('This feature has yet to be added.')
+    else:
+        print('Have a nice day! Goodbye.')
+        banking = 'n'
