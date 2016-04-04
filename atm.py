@@ -26,8 +26,8 @@ class User:
         balance is *balance*."""
         self.account_num = account_num
         self.name = name
-        self.balance = database[me.account_num][1]
-        self.pin = database[me.account_num][1]
+        self.balance = database
+        self.pin = database
 
     def withdraw(self, amount):
         """Return the balance remaining after withdrawing *amount*
@@ -44,21 +44,6 @@ class User:
         self.balance += amount
         print('Your current balance is: {}'.format(self.balance))
         return self.balance
-
-    def session(self, database):
-        """create a dict for storage of user's name, balance, and account#.
-        This information should be saved to an external txt."""
-        self.account_num = input(
-            'Please enter your account number (e.g. a428): ')
-
-    def security(self, database):
-        if self.pin in database.values():
-            return True
-        else:
-            return False
-
-            print('dude, wtf?!')
-            print('\nAccount ' + self.account_num + ' has been verified.\n')
         # else:
         #     # enter name and have system generate a new account# based on
         #     # a-z100-999  with blanace 0
@@ -77,16 +62,19 @@ def open_account_database():
 
 # database = {'a123':['Matt', 0, '1234'], 'a234':['John', 0,
 #     '2345'], 'a345':['Mary', 0, '3456']}
+
 database = open_account_database()
+input('Please enter your account number (e.g. a428): ')
+print('\nAccount ' + me.account_num + ' has been verified.\n')
 me = User()
 banking = 'y'
 while banking.lower() == 'y':
     os.system('cls')
-    me.setup(
-        me.account_num,
-        database[me.account_num][0],
-        database[me.account_num][1],
-        database[me.account_num][2])
+    # me.setup(
+    #     me.account_num,
+    #     database[][0],
+    #     database[][1],
+    #     database[][2])
     print(
         'Welcome {}, would you like to do today?'
             .format(me.name)

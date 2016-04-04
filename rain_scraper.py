@@ -123,7 +123,6 @@ def display_rain_info():
     # years_and_amounts = [(pair[0][-4:], pair[1]) for pair
     #                       in dates_and_totals if len(pair) > 1]
     # convert the tuples to a dict
-
     d = {}
     for year, amount in years_and_amounts:
         d.setdefault(year, []).append(int(amount))
