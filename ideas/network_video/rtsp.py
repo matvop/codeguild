@@ -16,8 +16,8 @@ import re
 import bitstring # if you don't have this from your linux distro, install with "pip install bitstring"
 
 # ************************ FOR QUICK-TESTING EDIT THIS AREA *********************************************************
-ip="50.73.56.89" # IP address of your cam
-adr="rtsp://50.73.56.89/axis-media/media.amp" # username, passwd, etc.
+ip=b"192.168.1.10" # IP address of your cam
+adr=b"rtsp://@192.168.1.10/axis-media/media.amp	" # username, passwd, etc.
 clientports=[60784,60785] # the client ports we are going to use for receiving video
 fname="stream.h264" # filename for dumping the stream
 rn=5000 # receive this many packets
@@ -25,9 +25,9 @@ rn=5000 # receive this many packets
 # you might also want to install h264bitstream to analyze your h264 file
 # *******************************************************************************************************************
 
-dest="DESCRIBE " + adr + " RTSP/1.0\r\nCSeq: 2\r\nUser-Agent: python\r\nAccept: application/sdp\r\n\r\n"
-setu="SETUP "+adr+"/trackID=1 RTSP/1.0\r\nCSeq: 3\r\nUser-Agent: python\r\nTransport: RTP/AVP;unicast;client_port="+str(clientports[0])+"-"+str(clientports[1])+"\r\n\r\n"
-play="PLAY "+adr+" RTSP/1.0\r\nCSeq: 5\r\nUser-Agent: python\r\nSession: SESID\r\nRange: npt=0.000-\r\n\r\n"
+dest=b"DESCRIBE " + adr + b" RTSP/1.0\r\nCSeq: 2\r\nUser-Agent: python\r\nAccept: application/sdp\r\n\r\n"
+setu=b"SETUP "+ adr + b"/trackID=1 RTSP/1.0\r\nCSeq: 3\r\nUser-Agent: python\r\nTransport: RTP/AVP;unicast;client_port="+bytes(clientports[0])+b"-"+bytes(clientports[1])+b"\r\n\r\n"
+play=b"PLAY "+ adr + b" RTSP/1.0\r\nCSeq: 5\r\nUser-Agent: python\r\nSession: SESID\r\nRange: npt=0.000-\r\n\r\n"
 
 # File organized as follows:
 # 1) Strings manipulation routines
@@ -64,7 +64,7 @@ def getLength(st):
 def printrec(recst):
   """ Pretty-printing rtsp strings
   """
-  recs=recst.split('\r\n')
+  recs=recst.split(b'\r\n')
   for rec in recs:
     print(rec)
 
@@ -72,18 +72,18 @@ def printrec(recst):
 def sessionid(recst):
   """ Search session id from rtsp strings
   """
-  recs=recst.split('\r\n')
+  recs=recst.split(b'\r\n')
   for rec in recs:
     ss=rec.split()
-    # print(">",ss
-    if (ss[0].strip()=="Session:"):
-      return int(ss[1].split(";")[0].strip())
+    print(b">",ss)
+    if (ss[0].strip()==b"Session:"):
+      return int(ss[1].split(b";")[0].strip())
 
 
 def setsesid(recst,idn):
   """ Sets session id in an rtsp string
   """
-  return recst.replace("SESID",str(idn))
+  return recst.replace(b"SESID",str(idn))
 
 
 
@@ -244,7 +244,7 @@ def digestpacket(st):
 # further reading:
 # https://docs.python.org/2.7/howto/sockets.html
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((ip,554)) # RTSP should peek out from port 554
+s.connect((ip,10556)) # RTSP should peek out from port 554
 print("\n*** SENDING DESCRIBE ***\n")
 print(dest)
 s.send(dest)
@@ -266,7 +266,7 @@ print("ip,serverports",ip,serverports)
 print("****")
 
 s1=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s1.bind(("", clientports[0])) # we open a port that is visible to the whole internet (the empty string "" takes care of that)
+s1.bind((b"", clientports[0])) # we open a port that is visible to the whole internet (the empty string "" takes care of that)
 s1.settimeout(5) # if the socket is dead for 5 s., its thrown into trash
 # further reading:
 # https://wiki.python.org/moin/UdpCommunication

@@ -15,7 +15,7 @@ while True:
     b = bytes.find(b'\xff\xd9')
     if a != -1 and b != -1:
         jpg = bytes[a:b + 2]
-        print(jpg)
+        # print(jpg)
         bytes = bytes[b + 2:]
         image = cv2.imdecode(np.fromstring(jpg, dtype=np.uint8),
                          cv2.IMREAD_COLOR)

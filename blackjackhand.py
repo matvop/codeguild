@@ -17,21 +17,22 @@ import random
 
 
 class Card:
-    def __init__(self, points):
-        # self.suit = suit
-        self.points = points
+    NAMES = ['A', '2', '3', '4', '5', '6', '7',
+             '8', '9', '10', 'J','Q', 'K']
+    SUITS = ['♣', '♦', '♥', '♠']
 
-    # def score_the_card(self):
-    #     self.points
+    def __init__(self, names, suits):
+        self.suits = suits
+        self.names = names
+
+    def available_names(self, names, suits):
+        for i in self.names:
+            
 
 
 class Hand:
     def __init__(self, list_of_cards, sum_of_points):
-        self.possible_cards_with_score = [
-            ['2', 2], ['3', 3], ['4', 4], ['5', 5], ['6', 6], ['7', 7],
-            ['8', 8], ['9', 9], ['10', 10], ['J', 10], ['Q', 10], ['K', 10],
-            ['A', 11]]
-        self.possible_cards = [i[0][0] for i in self.possible_cards_with_score]
+        self.names = [i[0][0] for i in self.names]
         self.list_of_cards = list_of_cards
         self.sum_of_points = sum_of_points
 
