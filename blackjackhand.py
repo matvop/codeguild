@@ -17,49 +17,39 @@ import random
 
 
 class Card:
-    NAMES = ['A', '2', '3', '4', '5', '6', '7',
-             '8', '9', '10', 'J','Q', 'K']
-    SUITS = ['♣', '♦', '♥', '♠']
+    names = ['2', '3', '4', '5', '6', '7',
+             '8', '9', '10', 'J', 'Q', 'K', 'A']
+    suits = ['c', 'd', 'h', 's']
 
     def __init__(self, names, suits):
         self.suits = suits
         self.names = names
 
-    def available_names(self, names, suits):
-        for i in self.names:
-            
-
+    def __repr__(self):
+        response = self.names + self.suits
+        return response
 
 class Hand:
-    def __init__(self, list_of_cards, sum_of_points):
-        self.names = [i[0][0] for i in self.names]
-        self.list_of_cards = list_of_cards
-        self.sum_of_points = sum_of_points
+    def __init__(self, cards):
+        self.cards = []
 
     def __repr__(self):
-        my_str = 'You scored {}!'.format(self.sum_of_points)
-        # I have absolutely no idea what this does
+        if self.cards:
+           response = ''
+           for card in self.cards:
+               response += str(card) + ' '
+           else:
+               reponse = '<empty>'
+           return response
 
-    def add_card_to_hand(self):
-        self.list_of_cards.append(random.choice(self.possible_cards))
-        return self.list_of_cards
+    def add_card(self, card):
+        self.cards.append(card)
 
-    def score_the_hand(self, list_of_cards):
-        # print([i[1] for i in self.possible_cards_with_score])
-        self.sum_of_points = sum([i[1] for i in self.possible_cards_with_score
-                                  if i[0] in self.list_of_cards])
-        print(self.sum_of_points)
+    def score(self, points):
+        if names[0:10] in self.cards:
+            points += 10
+        # if self.names in :
+        # points =
 
-
-myhand = Hand([], 0)
-list_of_cards = myhand.add_card_to_hand()
-run = True
-while run:
-    list_of_cards = myhand.add_card_to_hand()
-    print(list_of_cards)
-    yayornay = input('Draw another card? [y/n]: ')
-    if yayornay == 'y':
-        run = True
-    else:
-        print('You scored {}!'.format(myhand.score_the_hand(list_of_cards)))
-        run = False
+my_hand = Hand()
+print(my_hand)
