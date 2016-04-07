@@ -45,6 +45,10 @@ class Hand:
 
     def add_card(self):
         self.cards.append(Card.rand_names + Card.rand_suits)
+        # this is where to add option to remove the card if it matches another card_string
+        for card in self.cards:
+            if card == card:
+                print('this actually works?!')
 
     def score(self):
         points = 0
