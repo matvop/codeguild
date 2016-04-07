@@ -64,9 +64,9 @@ def open_account_database():
 #     '2345'], 'a345':['Mary', 0, '3456']}
 
 database = open_account_database()
-input('Please enter your account number (e.g. a428): ')
+account_num = input('Please enter your account number (e.g. a428): ')
 print('\nAccount ' + me.account_num + ' has been verified.\n')
-me = User()
+me = User(account_num)
 banking = 'y'
 while banking.lower() == 'y':
     os.system('cls')

@@ -71,6 +71,7 @@ def search_business_name(review_class_list, user_input_string):
     print(random.choice(review_list))
     return review_list
 
+
 def search_user_name(review_class_list, user_input_string):
     list_of_user_reviews = [i for i in review_class_list
                             if user_input_string in i.user_name]
