@@ -62,9 +62,10 @@ class Hand:
                 print('name is: ' + card[0])
                 points += 1
         for card in self.cards:
-            if 'A' in self.cards and points + 11 <= 21:
-                print('bonus points for ace awarded! ')
-                points += 10
+            for s in card:
+                if 'A' in s and points + 11 <= 21:
+                    print('bonus points for ace awarded! ')
+                    points += 10
         return points
                     # points += int(card[-1])
             # convert string character at -1 into int and add its name to points
