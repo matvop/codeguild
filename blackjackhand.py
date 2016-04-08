@@ -19,64 +19,66 @@ import random
 class Card:
     names = ['A', '2', '3', '4', '5', '6', '7',
              '8', '9', '10', 'J', 'Q', 'K']
-    suits = ['c', 'd', 'h', 's']
-    rand_names = random.choice(names)
-    rand_suits = random.choice(suits)
+    suits = ['C', 'D', 'H', 'S']
 
     def __init__(self, name, suit):
-        self.suit = suit
         self.name = name
+        self.suit = suit
 
     def __repr__(self):
-        card_string = '{}{}'.format(self.name, self.suit)
+        card_string = 'Card({}{})'.format(self.name, self.suit)
         return card_string
 
+    def generate_rand_card(self):
+        card = Card(random.choice(Card.names), random.choice(Card.suits))
+        return card
 
 class Hand:
     def __init__(self, cards):
         self.cards = cards
 
     def __repr__(self):
-       hand_string = 'Your Hand: '
-       for card in self.cards:
-           if self.cards:
-               hand_string += '{}'.format(card)
-       return 'Hand: {}'.format(self.cards)
+       return 'Hand({})'.format(self.cards)
 
-    def add_card(self):
-        self.cards.append(Card.rand_names + Card.rand_suits)
+    def add_card(self, card):
+        self.cards.append(Card.generate_rand_card(self))
+        print('Added {} to your hand'.format(self.cards[-1]))
         # this is where to add option to remove the card if it matches another card_string
-        for card in self.cards:
-            if card == card:
-                print('this actually works?!')
+        # for card in self.cards:
+        #     if card == card:
+        #         print('this actually works?!')
 
-    def score(self):
+    def score(self, player_hand):
         points = 0
-        for card in self.cards:
+        for card in player_hand:
             if card[0] in Card.names[-3:]:
-                print('name is: ' + card[0])
                 points += 10
             if card[0] in Card.names[1:10]:
-                print('name is: ' + card[0])
                 points += int(card[0])
             if card[0:2] == '10':
-                print('name is: ' + card[0:2])
                 points += int(card[0:2])
             if card[0] == 'A':
-                print('name is: ' + card[0])
                 points += 1
-        for card in self.cards:
+        for card in player_hand:
             for s in card:
                 if 'A' in s and points + 11 <= 21:
-                    print('bonus points for ace awarded! ')
                     points += 10
-        return points
-                    # points += int(card[-1])
-            # convert string character at -1 into int and add its name to points
+        return 'You scored {} points!'.format(points)
 
 
-my_hand = Hand([random.choice(Card.names) + random.choice(Card.suits)])
+# card = [random.choice(Card.names), random.choice(Card.suits)]
+
+my_card = [Card(random.choice(Card.names), random.choice(Card.suits))]
+print(my_card)
+my_hand = Hand(my_card)
 print(my_hand)
-Hand.add_card(my_hand)
+my_hand.add_card(my_card)
+print(my_hand)
+my_hand.score(my_hand)
+print(my_score)
+
+custom_hand = print(input(str("Please enter a hand to be scored(i.e. 'k q' or 'kd qh'): ")).upper().split())
+print(custom_hand)
+my_hand = Hand(custom_hand)
 print(my_hand)
 print(Hand.score(my_hand))
