@@ -23,14 +23,12 @@ class Token(object):
     def __repr__(self):
         pass
 
-    def add_r_token_to_board():
+    # def add_r_token_to_board():
+    #
+    # def add_y_token_to_board():
 
-    def add_y_token_to_board():
 
 
-
-# def check_the_board():
-#     for i in the_board:
 def open_account_database():
     with open('4-moves.txt') as data_file:
         database = data_file.read()
@@ -38,47 +36,53 @@ def open_account_database():
 
 
 
-pre_existing_moves = [4, 3, 5, 6, 4, 4, 5, 3, 6, 2, 7, 7, 3, 7, 4, 5, 6, 5]
+move_list = [4, 3, 5, 6, 4, 4, 5, 3, 6, 2, 7, 7, 3, 7, 4, 5, 6, 5]
 
-the_board = []
-rows = []
+# the_board =[
+# [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],
+# [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]
+# ]
 
-for i in range(7):
-    rows.append(0)
-
-for columns in range(6):
-    the_board.append(rows)
-
-# move_database = open_account_database()
-red_move_list = [i-1 for i in pre_existing_moves[::2]]
-yellow_move_list = [i-1 for i in pre_existing_moves[1::2]]
-
-def add_r_token_to_board(red_move_list, the_board):
-    move_index = []
-    for i in red_move_list:
-        move_index.append(i - 1)
-    for i in move_index:
-        x = 0
-        if the_board[-1][i] == 0:
-            the_board[-1 - x][i] = 'R'
-            print('R added token')
-        elif the_board[-1 -x][i] != 0:
-            x += 1
-            the_board[-1 - x][i] = 'R'
-            print(x)
-            print('R added a token on top of another')
-        elif:
-
-        elif:
+def make_the_board():
+    rows = []
+    the_board = []
+    for i in range(7):
+        rows.append(0)
+    for columns in range(6):
+        the_board.append(rows)
     return the_board
 
+# move_database = open_account_database()
 
-add_token_to_board(pre_existing_moves, the_board)
-    # board[-1][0]
+def add_token(the_board, move_list):
+    for index, move in enumerate(move_list):
+        if index % 2 == 0:
+            print('R Moved')
+            the_board[find_row_index(the_board, move)][find_column(move)] = 'R'
+        else:
+            print('Y Moved')
+            the_board[find_row_index(the_board, move)][find_column(move)] = 'Y'
+    print('WAKKA WAKKA')
 
-print(the_board[-6])
-print(the_board[-5])
-print(the_board[-4])
-print(the_board[-3])
-print(the_board[-2])
+
+def find_column(move):
+    column = move - 1
+    return column
+
+
+def find_row_index(the_board, move):
+    column = find_column(move)
+    for index, row in enumerate(the_board):
+        if row[column] == 0:
+            return index
+
+
+the_board = make_the_board()
+add_token(the_board, move_list)
+
 print(the_board[-1])
+print(the_board[-2])
+print(the_board[-3])
+print(the_board[-4])
+print(the_board[-5])
+print(the_board[-6])
