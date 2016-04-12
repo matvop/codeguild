@@ -23,25 +23,22 @@ class Card(object):
         self.suits = ['C', 'D', 'H', 'S']
 
     def __repr__(self):
-        reply = '{}{}'.format(self.names, self.suits)
-        return reply
-
-    def generate_card(self):
-        the_card = Card(random.choice(self.names), random.choice(self.suits))
-        return the_card
+        return 'Card({}{})'.format(self.names, self.suits)
 
 
 class Hand(object):
     def __init__(self):
-        hand_of_cards = self.hand_of_cards
-
-    hand_of_cards = []
+        self.hand_of_cards = []
 
     def __repr__(self):
         return 'Hand({})'.format(self.hand_of_cards)
 
+    def generate_card(self):
+        self.the_card = random.choice(Card.names), random.choice(Card.suits)
+        return self.the_card
+
     def add_card(self):
-        self.hand_of_cards.append(Card.generate_card(self))
+        self.hand_of_cards.append(self.generate_card())
         print('Added {} to your hand'.format(self.hand_of_cards[-1]))
 
     def score(self, split_hand, the_cards):
@@ -66,8 +63,8 @@ def main():
     print(my_card)
     my_hand = Hand()
     print(my_hand)
-    my_card.generate_card()
-    # print(my_hand)
+    my_hand.add_card()
+    print(my_hand)
     # print(my_hand.score())
     # split_hand = print(input(str("Please enter a hand to be scored(i.e. 'k q' or 'kd qh'): ")).upper().split())
     # print(split_hand)
