@@ -21,20 +21,20 @@ class Board(object):
         column = move - 1
         return column
 
-    def find_row_index(self, the_board, move):
+    def find_row_index(self, move):
         column = self.find_column(move)
         for index, row in enumerate(self.the_board):
             if row[column] == ' ':
                 return index
 
-    def add_token(self, move_list):
-        for index, move in enumerate(move_list):
+    def add_token(self):
+        for index, move in enumerate(self.move_list):
             if index % 2 == 0:
-                self.the_board[self.find_row_index(self.the_board,
-                               move)][self.find_column(move)] = 'R'
+                self.the_board[self.find_row_index(move)][
+                               self.find_column(move)] = 'R'
             else:
-                self.the_board[self.find_row_index(self.the_board,
-                               move)][self.find_column(move)] = 'Y'
+                self.the_board[self.find_row_index(move)][
+                               self.find_column(move)] = 'Y'
         return self.the_board #once this runs, i think __repr__ will print
 
 
@@ -65,7 +65,7 @@ def create_move_list():
 def main():
     move_list = create_move_list()
     my_game = Board(move_list)
-    my_game.add_token(move_list)
+    my_game.add_token()
     print(my_game)
 
 
