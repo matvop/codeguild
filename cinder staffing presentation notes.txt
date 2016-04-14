@@ -1,2 +1,0 @@
-Resume Parsing:
--include keywords in job description inside resume
