@@ -33,27 +33,27 @@ def camel_to_snake():
 
 
 def convert_snake(orig_string):
-    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.split('_')])) #CamelCase
-    print('kebab-case: ' + '-'.join([i for i in orig_string.split('_')])) #kebab-case
-    print('CONSTANT_CASE: ' + '_'.join([i for i in orig_string.split('_')]).upper()) #CONSTANT_CASE
+    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.split('_')]))  # CamelCase
+    print('kebab-case: ' + '-'.join([i for i in orig_string.split('_')]))  # kebab-case
+    print('CONSTANT_CASE: ' + '_'.join([i for i in orig_string.split('_')]).upper())  # CONSTANT_CASE
 
 
 def convert_camel(orig_string):
-    print('snake_case: ' + '_'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).lower()) #snake_case
-    print('kebab-case: ' + '-'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).lower()) #kebab-case
-    print('CONSTANT_CASE: ' + '_'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).upper()) #CONSTANT_CASE
+    print('snake_case: ' + '_'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).lower())  # snake_case
+    print('kebab-case: ' + '-'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).lower())  # kebab-case
+    print('CONSTANT_CASE: ' + '_'.join([i for i in re.findall('[A-Z][^A-Z]*', orig_string)]).upper())  # CONSTANT_CASE
 
 
 def convert_kebab(orig_string):
-    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.split('-')])) # CamelCase
-    print('snake_case: ' + '_'.join([i for i in orig_string.split('-')])) # snake_case
-    print('CONSTANT_CASE: ' + '_'.join([i for i in orig_string.split('-')]).upper()) # CONSTANT_CASE
+    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.split('-')]))  # CamelCase
+    print('snake_case: ' + '_'.join([i for i in orig_string.split('-')]))  # snake_case
+    print('CONSTANT_CASE: ' + '_'.join([i for i in orig_string.split('-')]).upper())  # CONSTANT_CASE
 
 
 def convert_constant(orig_string):
-    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.lower().split('_')])) # CamelCase
-    print('kebab-case: ' + '-'.join([i for i in orig_string.lower().split('_')])) # kebab
-    print('snake_case: ' + orig_string.lower()) # snake
+    print('CamelCase: ' + ''.join([i[0].upper() + i[1:] for i in orig_string.lower().split('_')]))  # CamelCase
+    print('kebab-case: ' + '-'.join([i for i in orig_string.lower().split('_')]))  # kebab
+    print('snake_case: ' + orig_string.lower())  # snake
 
 
 def prompt_for_string():
