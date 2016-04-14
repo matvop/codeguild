@@ -1,14 +1,12 @@
 # Andrew and Matt
 # Connect Four Game
-#
-
 
 class Board(object):
     def __init__(self, move_list):
         self.the_board = [[' ' for i in range(7)] for i in range(6)]
         self.move_list = move_list
 
-    def __repr__(self):
+    def __str__(self):
         return '\nConnect Four:\n\n|{}|\n|{}|\n|{}|\n|{}|\n|{}|\n|{}|\n'.format(
         ' '.join(self.the_board[-1]),
         ' '.join(self.the_board[-2]),

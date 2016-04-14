@@ -63,3 +63,5 @@
 #             row.append(0)
 #         the_board.append(row)
 #     return the_board
+    def score_grid():
+        grid = [[row for i in range(4)]for i in range(4)]
