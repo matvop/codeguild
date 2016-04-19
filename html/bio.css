@@ -1,0 +1,46 @@
+
+
+body {
+    font-family: Arial;
+    color: #061539;
+    background-color: #2E4272;
+}
+h1 {
+    font-size: 3.0em;
+    font-family: Times;
+}
+img {
+    border-radius: 10px;
+}
+td {
+    border-spacing: 10px;
+}
+/* unvisited link */
+a:link {
+    font-weight: bold;
+    color: #061539;
+}
+
+/* visited link */
+a:visited {
+    color: #7887AB;
+}
+
+/* mouse over link */
+a:hover {
+    color: #7887AB;
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
+.quotes {
+    font-family: monospace;
+}
+ul {
+    list-style: none;
+}
+ul li:before {
+    content: "☢ ";
+}

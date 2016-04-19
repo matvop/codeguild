@@ -97,8 +97,7 @@ def date_amount_to_day_month_amount(date_and_amount):
     return (day_month, amount)
 
 
-def display_rain_info():
-    rain_line_data = parse_rain_file_url()
+def get_dates_and_totals():
     print('\nCurrently connected to the ' + rain_line_data[0])
     raw_dates_and_totals = []
     for line in rain_line_data[11:]:
@@ -107,15 +106,18 @@ def display_rain_info():
         amount = items_in_line[1]
         pair = (date, amount)
         raw_dates_and_totals.append(pair)
-    dates_and_totals = [tuple(`i`
+    dates_and_totals = [tuple(
         s if s != "-" else "0" for s in pair)
             for pair in raw_dates_and_totals]
-    date, amount = max(dates_and_totals, key=lambda x: int(x[1]))
+    return dates_and_totals
+
+def display_rain_info(rain_line_data):
+    date, amount = max(get_dates_and_totals(), key=lambda x: int(x[1]))
     inches = (int(amount) * .01)
     todays_date = rain_line_data[11][:6]
     matching_dates = []
     todays_date_and_amounts = [date_amount_to_day_month_amount(pair)
-                               for pair in dates_and_totals]
+                               for pair in get_dates_and_totals()]
     for pair in todays_date_and_amounts:
         if todays_date in pair:
             matching_dates.append(pair)
@@ -130,9 +132,9 @@ def display_rain_info():
 
 def display_rainiest_year():
     years_and_amounts = [date_amount_to_year_amount(pair)
-                         for pair in dates_and_totals]
+                         for pair in get_dates_and_totals()]
     # years_and_amounts = [(pair[0][-4:], pair[1]) for pair
-    #                       in dates_and_totals if len(pair) > 1]
+    #                       in get_dates_and_totals() if len(pair) > 1]
     d = {}
     # convert the tuples to a dict - change amount string to int
     for year, amount in years_and_amounts:
@@ -149,11 +151,12 @@ def display_rainiest_year():
 
 html_source_lines = parse_index_url()
 gauge_dict = create_rain_gauge_dict()
+rain_line_data = parse_rain_file_url()
 rain = True
 while rain:
     os.system('cls')
     display_gauges()
-    display_rain_info()
+    display_rain_info(rain_line_data)
     yayornay = input('Would you like to check another station? [y/n]: '
                      ).lower()
     if yayornay == 'y':

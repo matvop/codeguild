@@ -11,23 +11,22 @@
 import re
 
 
-def snake_to_camel():
-    new_list = prompt_for_string().split('_')
+def snake_to_camel(orig_string):
+    new_list = orig_string.split('_')
     camel_case = ''.join([i[0].upper() + i[1:] for i in new_list])
     return camel_case
 
 
-def convert_to_camel():
-    print('Your word: ' + prompt_for_string())
-    string_list = re.split('_|-|;|,|\*', prompt_for_string())
+def convert_to_camel(orig_string):
+    string_list = re.split('_|-', orig_string)
     print(string_list)
     camel_case = ''.join([i[0].upper() + i[1:] for i in string_list])
     return camel_case
 
 
-def camel_to_snake():
-    print('Your string: ' + prompt_for_string())
-    string_list = re.findall('[A-Z][^A-Z]*', prompt_for_string())
+def camel_to_snake(orig_string):
+    print('Your string: ' + orig_string)
+    string_list = re.findall('[A-Z][^A-Z]*', orig_string)
     snake_case = '_'.join([i for i in string_list])
     return snake_case.lower()
 
@@ -71,5 +70,5 @@ def main():
     if orig_string == orig_string.lower():
         return convert_snake(orig_string)
 
-
-main()
+if __name__ == '__main__':
+    main()
