@@ -51,15 +51,23 @@ ul li:before {
     content: "▸ ";
 }
 section.bio {
-    width: 75%;
+    width: 65%;
 }
 .quotes {
     margin: .5em;
 }
 .float {
+    margin: 5px;
     float: right;
 }
 #ny {
     max-height: 150px;
     float: left;
+}
+footer.flexfooter {
+    width: 80%;
+    display: flex;
+}
+.flexfooter section {
+    flex-grow: 1;
 }
