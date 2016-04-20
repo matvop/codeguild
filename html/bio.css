@@ -30,7 +30,7 @@ img {
 }
 .photo {
     height: auto;
-    width: 50%;
+    width: 40%;
     float: right;
     margin: 5px;
 }
@@ -72,9 +72,17 @@ ul li:before {
     float: left;
 }
 footer.flexfooter {
-    width: 80%;
+    width: 100%;
     display: flex;
 }
 .flexfooter section {
     flex-grow: 1;
 }
+/*@media (max-device-width: 600px) {
+    .flexfooter {
+        display: none;
+    }
+    html {
+        background-color: white;
+    }
+}*/
