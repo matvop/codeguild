@@ -32,22 +32,24 @@ html {
 }
 
 .card header{
-    height: 20%;
+    height: 25%;
+    padding-left: 1.0em;
     background-image: linear-gradient(to bottom,rgba(0,0,0,0.1), rgba(0,0,0,0));
-    border-radius: 1.5em 1.5em 0 0;
+    border-radius: 15px 15px 0 0;
+    font-size: 1.5em;
 }
 
 .card footer{
-    height: 20%;
-    /*background-image: linear-gradient(to bottom,rgba(0,0,0,0), rgba(0,0,0,0.1));*/
-    /*border-radius: 0 0 1.5em 1.5em;*/
+    height: 25%;
+    padding-left: 1em;
+    background-image: linear-gradient(to bottom,rgba(0,0,0,0), rgba(0,0,0,0.1));
+    border-radius: 0 0 15px 15px;
     font-size: 1.5em;
     clear: both;
 }
 
 .card img{
-  /*max-width: 33%;*/
-  max-height: 100%;
+  height: 112px;
   float: right;
 }
 
@@ -55,11 +57,20 @@ html {
     color: white;
     overflow: auto;
     background-color: darkred;
-    height: 60%;
-    padding-left: 0.33em;
-
 }
-.card p, h2 {
-    padding-left: 1em;
-    max-height: 100%;
+
+#footertext{
+  padding-top: 1.0em;
+  font-weight: bold;
+  font-size: .9em
+}
+
+#headertext{
+  padding-top: 1.0em;
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+#info{
+  padding-left: 15px;
 }
