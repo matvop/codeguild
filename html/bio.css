@@ -1,49 +1,65 @@
 /*Elelment -> Class -> ID*/
-
+html {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
 body {
+    font-size: 1.5em;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 80%;
     font-family: monospace;
     color: #061539;
-    background-color: #2E4272;
+    background-image: linear-gradient(to top, rgba(120,135,171,1),rgba(22,40,86,1));
 }
 h1 {
-    font-size: 4.0em;
+    font-size: 2.0em;
+    color: #7887AB;
     font-weight: bold;
     font-family: Courier;
 }
 img {
-    border-radius: 50px;
-}
-td {
-    text-align: center;
-    vertical-align: middle;
+    border-width: medium;
+    border-style: solid;
     border-spacing: 10px;
+    border-radius: 30px;
+    border-color: #7887AB;
 }
-/* unvisited link */
+.photo {
+    float: right;
+}
 a:link {
     font-weight: bold;
     color: #061539;
 }
-
-/* visited link */
 a:visited {
     color: #7887AB;
 }
-
-/* mouse over link */
 a:hover {
     color: #7887AB;
 }
-
-/* selected link */
 a:active {
     color: blue;
-}
-.quotes {
-    font-family: monospace;
 }
 ul {
     list-style: none;
 }
 ul li:before {
     content: "▸ ";
+}
+section.bio {
+    width: 75%;
+}
+.quotes {
+    margin: .5em;
+}
+.float {
+    float: right;
+}
+#ny {
+    max-height: 150px;
+    float: left;
 }
