@@ -29,7 +29,13 @@ img {
     border-color: #7887AB;
 }
 .photo {
+    height: auto;
+    width: 50%;
     float: right;
+    margin: 5px;
+}
+section.bio {
+    width: 65%;
 }
 a:link {
     font-weight: bold;
@@ -50,18 +56,19 @@ ul {
 ul li:before {
     content: "▸ ";
 }
-section.bio {
-    width: 65%;
-}
 .quotes {
-    margin: .5em;
+    margin: 10px;
 }
 .float {
-    margin: 5px;
     float: right;
+    height: auto;
+    width: 30%;
+    margin-top: 10px;
+    margin-right: 110px;
 }
 #ny {
-    max-height: 150px;
+    height: auto;
+    width: 30%;
     float: left;
 }
 footer.flexfooter {
