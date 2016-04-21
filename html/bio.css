@@ -78,11 +78,11 @@ footer.flexfooter {
 .flexfooter section {
     flex-grow: 1;
 }
-/*@media (max-device-width: 600px) {
+@media (max-device-width: 600px) {
     .flexfooter {
         display: none;
     }
     html {
         background-color: white;
     }
-}*/
+}
