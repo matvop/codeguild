@@ -16,8 +16,8 @@ import re
 import bitstring # if you don't have this from your linux distro, install with "pip install bitstring"
 
 # ************************ FOR QUICK-TESTING EDIT THIS AREA *********************************************************
-ip=b"192.168.1.10" # IP address of your cam
-adr=b"rtsp://@192.168.1.10/axis-media/media.amp	" # username, passwd, etc.
+ip=b"128.193.182.123" # IP address of your cam
+adr=b"rtsp://@128.193.182.123/onvif-media/media.amp	" # username, passwd, etc.
 clientports=[60784,60785] # the client ports we are going to use for receiving video
 fname="stream.h264" # filename for dumping the stream
 rn=5000 # receive this many packets
@@ -267,7 +267,7 @@ print("****")
 
 s1=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s1.bind((b"", clientports[0])) # we open a port that is visible to the whole internet (the empty string "" takes care of that)
-s1.settimeout(5) # if the socket is dead for 5 s., its thrown into trash
+s1.settimeout(15) # if the socket is dead for 5 s., its thrown into trash
 # further reading:
 # https://wiki.python.org/moin/UdpCommunication
 
