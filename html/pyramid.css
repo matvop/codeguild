@@ -1,0 +1,16 @@
+html {
+
+}
+body {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+div {
+    border: 1px;
+    border-color: black;
+    
+}
+section {
+
+}
