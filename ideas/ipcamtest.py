@@ -4,9 +4,8 @@ import numpy as np
 
 # use the method below to retrieve recorded byte file and playback
 # in place of the stream url
-
-stream = urllib.request.urlopen('http://50.73.56.89/axis-cgi/mjpg/video'
-                                '.cgi?date=1&clock=1&resolution=640x360')
+# '.cgi?date=1&clock=1&resolution=[640]x[360]'
+stream = urllib.request.urlopen('http://sudo:281281@esoteric.ddns.net:8181/mjpg/video.mjpg')
 
 bytes = b''
 while True:

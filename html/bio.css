@@ -3,6 +3,7 @@ html {
     display:flex;
     flex-direction: column;
     align-items: center;
+    background-color: gainsboro;
 }
 body {
     font-size: 1.5em;
@@ -11,15 +12,20 @@ body {
     flex-wrap: wrap;
     align-items: center;
     width: 80%;
+    margin-bottom: 30px;
     font-family: monospace;
     color: #061539;
+    border-width:0px;
     background-image: linear-gradient(to top, rgba(120,135,171,1),rgba(22,40,86,1));
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 0.53);
 }
 h1 {
-    font-size: 2.0em;
+    display: flex;
+    justify-content: center;
     color: #7887AB;
-    font-weight: bold;
     font-family: Courier;
+    background-color: gainsboro;
+    width: 100%;
 }
 img {
     border-width: medium;
@@ -67,15 +73,23 @@ ul li:before {
     margin-right: 110px;
 }
 #ny {
+    margin: 20px;
     height: auto;
     width: 30%;
     float: left;
 }
-footer.flexfooter {
+.hometowns {
+    width: 80%;
+}
+.flexfooter {
     width: 100%;
     display: flex;
+    align-items: center;
+    height: 40px;
 }
 .flexfooter section {
+    display: flex;
+    justify-content: center;
     flex-grow: 1;
 }
 @media (max-device-width: 600px) {

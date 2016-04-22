@@ -1,4 +1,3 @@
-# http://stackoverflow.com/questions/28022432/receiving-rtp-packets-after-rtsp-setup
 """
 A demo python code that ..
 
@@ -16,8 +15,8 @@ import re
 import bitstring # if you don't have this from your linux distro, install with "pip install bitstring"
 
 # ************************ FOR QUICK-TESTING EDIT THIS AREA *********************************************************
-ip=b"83.64.164.6" # IP address of your cam
-adr=b"rtsp://83.64.164.6/onvif-media/media.amp" # username, passwd, etc.
+ip="73.240.232.124" # IP address of your cam
+adr="rtsp://sudo:281281@esoteric.ddns.net/axis-media/media.amp" # username, passwd, etc.
 clientports=[60784,60785] # the client ports we are going to use for receiving video
 fname="stream.h264" # filename for dumping the stream
 rn=5000 # receive this many packets
@@ -25,9 +24,9 @@ rn=5000 # receive this many packets
 # you might also want to install h264bitstream to analyze your h264 file
 # *******************************************************************************************************************
 
-dest=b"DESCRIBE " + adr + b" RTSP/1.0\r\nCSeq: 2\r\nUser-Agent: python\r\nAccept: application/sdp\r\n\r\n"
-setu=b"SETUP "+ adr + b"/trackID=1 RTSP/1.0\r\nCSeq: 3\r\nUser-Agent: python\r\nTransport: RTP/AVP;unicast;client_port="+bytes(clientports[0])+b"-"+bytes(clientports[1])+b"\r\n\r\n"
-play=b"PLAY "+ adr + b" RTSP/1.0\r\nCSeq: 5\r\nUser-Agent: python\r\nSession: SESID\r\nRange: npt=0.000-\r\n\r\n"
+dest="DESCRIBE "+adr+" RTSP/1.0\r\nCSeq: 2\r\nUser-Agent: python\r\nAccept: application/sdp\r\n\r\n"
+setu="SETUP "+adr+"/trackID=1 RTSP/1.0\r\nCSeq: 3\r\nUser-Agent: python\r\nTransport: RTP/AVP;unicast;client_port="+str(clientports[0])+"-"+str(clientports[1])+"\r\n\r\n"
+play="PLAY "+adr+" RTSP/1.0\r\nCSeq: 5\r\nUser-Agent: python\r\nSession: SESID\r\nRange: npt=0.000-\r\n\r\n"
 
 # File organized as follows:
 # 1) Strings manipulation routines
@@ -41,8 +40,8 @@ play=b"PLAY "+ adr + b" RTSP/1.0\r\nCSeq: 5\r\nUser-Agent: python\r\nSession: SE
 def getPorts(searchst,st):
   """ Searching port numbers from rtsp strings using regular expressions
   """
-  pat=re.compile(searchst+b"=\d*-\d*") # bytes here?
-  pat2=re.compile(b'\d+') # bytes here?
+  pat=re.compile(searchst+"=\d*-\d*")
+  pat2=re.compile('\d+')
   mstring=pat.findall(st)[0] # matched string .. "client_port=1000-1001"
   nums=pat2.findall(mstring)
   numas=[]
@@ -54,8 +53,8 @@ def getPorts(searchst,st):
 def getLength(st):
   """ Searching "content-length" from rtsp strings using regular expressions
   """
-  pat=re.compile(b"Content-Length: \d*")
-  pat2=re.compile(b'\d+')
+  pat=re.compile("Content-Length: \d*")
+  pat2=re.compile('\d+')
   mstring=pat.findall(st)[0] # matched string.. "Content-Length: 614"
   num=int(pat2.findall(mstring)[0])
   return num
@@ -64,26 +63,26 @@ def getLength(st):
 def printrec(recst):
   """ Pretty-printing rtsp strings
   """
-  recs=recst.split(b'\r\n')
+  recs=recst.split('\r\n')
   for rec in recs:
-    print(rec)
+    print rec
 
 
 def sessionid(recst):
   """ Search session id from rtsp strings
   """
-  recs=recst.split(b'\r\n')
+  recs=recst.split('\r\n')
   for rec in recs:
     ss=rec.split()
-    print(b">",ss)
-    if (ss[0].strip()==b"Session:"):
-      return int(ss[1].split(b";")[0].strip())
+    # print ">",ss
+    if (ss[0].strip()=="Session:"):
+      return int(ss[1].split(";")[0].strip()) #try base 16 decoding
 
 
 def setsesid(recst,idn):
   """ Sets session id in an rtsp string
   """
-  return recst.replace(b"SESID",str(idn))
+  return recst.replace("SESID",str(idn))
 
 
 
@@ -96,7 +95,7 @@ def digestpacket(st):
   (c) Concantenates frames
   (d) Returns a packet that can be written to disk as such and that is recognized by stock media players as h264 stream
   """
-  startbytes=b"\\x00\\x00\\x00\\x01" # this is the sequence of four bytes that identifies a NAL packet.. must be in front of every NAL packet.
+  startbytes="\x00\x00\x00\x01" # this is the sequence of four bytes that identifies a NAL packet.. must be in front of every NAL packet.
 
   bt=bitstring.BitArray(bytes=st) # turn the whole string-of-bytes packet into a string of bits.  Very unefficient, but hey, this is only for demoing.
   lc=12 # bytecounter
@@ -117,16 +116,16 @@ def digestpacket(st):
   lc=12 # so, we have red twelve bytes
   bc=12*8 # .. and that many bits
 
-  print("version, p, x, cc, m, pt",version,p,x,cc,m,pt)
-  print("sequence number, timestamp",sn,timestamp)
-  print("sync. source identifier",ssrc)
+  print "version, p, x, cc, m, pt",version,p,x,cc,m,pt
+  print "sequence number, timestamp",sn,timestamp
+  print "sync. source identifier",ssrc
 
   # st=f.read(4*cc) # csrc identifiers, 32 bits (4 bytes) each
   cids=[]
   for i in range(cc):
     cids.append(bt[bc:bc+32].uint)
     bc+=32; lc+=4;
-  print("csrc identifiers:",cids)
+  print "csrc identifiers:",cids
 
   if (x):
     # this section haven't been tested.. might fail
@@ -136,7 +135,7 @@ def digestpacket(st):
     hlen=bt[bc:bc+16].uint
     bc+=16; lc+=2;
 
-    print("ext. header id, header len",hid,hlen)
+    print "ext. header id, header len",hid,hlen
 
     hst=bt[bc:bc+32*hlen]
     bc+=32*hlen; lc+=4*hlen;
@@ -196,8 +195,8 @@ def digestpacket(st):
   nri=bt[bc+1:bc+3].uint # "NRI"
   nlu0=bt[bc:bc+3] # "3 NAL UNIT BITS" (i.e. [F | NRI])
   typ=bt[bc+3:bc+8].uint # "Type"
-  print("F, NRI, Type :", fb, nri, typ)
-  print("first three bits together :",bt[bc:bc+3])
+  print "F, NRI, Type :", fb, nri, typ
+  print "first three bits together :",bt[bc:bc+3]
 
   if (typ==7 or typ==8):
     # this means we have either an SPS or a PPS packet
@@ -205,9 +204,9 @@ def digestpacket(st):
     # more reading for example here:
     # http://www.cardinalpeak.com/blog/the-h-264-sequence-parameter-set/
     if (typ==7):
-      print(">>>>> SPS packet")
+      print ">>>>> SPS packet"
     else:
-      print(">>>>> PPS packet")
+      print ">>>>> PPS packet"
     return startbytes+st[lc:]
     # .. notice here that we include the NAL starting sequence "startbytes" and the "First byte"
 
@@ -219,7 +218,7 @@ def digestpacket(st):
   nlu1=bt[bc+3:bc+8] # 5 nal unit bits
 
   if (start): # OK, this is a first fragment in a movie frame
-    print(">>> first fragment found")
+    print ">>> first fragment found"
     nlu=nlu0+nlu1 # Create "[3 NAL UNIT BITS | 5 NAL UNIT BITS]"
     head=startbytes+nlu.bytes # .. add the NAL starting sequence
     lc+=1 # We skip the "Second byte"
@@ -228,7 +227,7 @@ def digestpacket(st):
     lc+=1 # We skip the "Second byte"
   elif (end==True): # last fragment in a sequence, just dump "VIDEO FRAGMENT DATA"
     head=""
-    print("<<<< last fragment found")
+    print "<<<< last fragment found"
     lc+=1 # We skip the "Second byte"
 
   if (typ==28): # This code only handles "Type" = 28, i.e. "FU-A"
@@ -244,47 +243,63 @@ def digestpacket(st):
 # further reading:
 # https://docs.python.org/2.7/howto/sockets.html
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((ip,554)) # RTSP should peek out from port 554
-print("\n*** SENDING DESCRIBE ***\n")
-print(dest)
+s.connect((ip,10556)) # RTSP should peek out from port 554
+
+print
+print "*** SENDING DESCRIBE ***"
+print
 s.send(dest)
 recst=s.recv(4096)
-print("\n*** GOT ****\n")
+print
+print "*** GOT ****"
+print
 printrec(recst)
 
-print("\n*** SENDING SETUP ***\n")
+print
+print "*** SENDING SETUP ***"
+print
 s.send(setu)
 recst=s.recv(4096)
-print("\n*** GOT ****\n")
+print
+print "*** GOT ****"
+print
 printrec(recst)
 idn=sessionid(recst)
 
 serverports=getPorts("server_port",recst)
 clientports=getPorts("client_port",recst)
-print("****")
-print("ip,serverports",ip,serverports)
-print("****")
+print "****"
+print "ip,serverports",ip,serverports
+print "****"
 
 s1=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s1.bind((b"", clientports[0])) # we open a port that is visible to the whole internet (the empty string "" takes care of that)
-s1.settimeout(15) # if the socket is dead for 5 s., its thrown into trash
+s1.bind(("", clientports[0])) # we open a port that is visible to the whole internet (the empty string "" takes care of that)
+s1.settimeout(5) # if the socket is dead for 5 s., its thrown into trash
 # further reading:
 # https://wiki.python.org/moin/UdpCommunication
 
 # Now our port is open for receiving shitloads of videodata.  Give the camera the PLAY command..
-print("\n*** SENDING PLAY ***\n")
+print
+print "*** SENDING PLAY ***"
+print
 play=setsesid(play,idn)
 s.send(play)
 recst=s.recv(4096)
-print("\n*** GOT ****\n")
+print
+print "*** GOT ****"
+print
 printrec(recst)
-print("\n** STRIPPING RTP INFO AND DUMPING INTO FILE **\n")
+print
+print
+print "** STRIPPING RTP INFO AND DUMPING INTO FILE **"
 f=open(fname,'w')
 for i in range(rn):
+  print
+  print
   recst=s1.recv(4096)
-  print("\n\nread",len(recst),"bytes")
+  print "read",len(recst),"bytes"
   st=digestpacket(recst)
-  print("dumping",len(st),"bytes")
+  print "dumping",len(st),"bytes"
   f.write(st)
 f.close()
 
