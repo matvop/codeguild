@@ -1,16 +1,19 @@
 html {
-
+    display: flex;
+    justify-content: center;
 }
 body {
-    display: flex;
-    flex-direction: column;
     width: 80%;
 }
 div {
-    border: 1px;
-    border-color: black;
-    
+    height: 100px;
+    margin: 10px;
+    border: 1px solid black;
 }
-section {
+.double {
+    display: flex;
+    flex-direction: row;
+}
+.triple {
 
 }
