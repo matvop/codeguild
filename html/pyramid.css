@@ -5,16 +5,30 @@ html {
 body {
     width: 80%;
 }
-div {
-    margin: 10px;
-    border: 1px solid black;
-}
 body > div {
     height: 100px;
     display: flex;
     flex-wrap: wrap;
 }
+div {
+    margin: 10px;
+    border: 1px solid black;
+}
 body > div > div {
     height: 80%;
-    flex-grow: 1;
+}
+.first > div {
+    width: 100%;
+}
+.one {
+    flex-grow: .8;
+}
+.two {
+    flex-grow: .2;
+}
+.third > div {
+    width: 20%;
+}
+.third {
+    justify-content: space-between;
 }
