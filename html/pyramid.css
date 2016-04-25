@@ -3,7 +3,8 @@ html {
     justify-content: center;
 }
 body {
-    width: 80%;
+    flex-grow: 1;
+    margin: 10px;
 }
 body > div {
     height: 100px;
@@ -18,7 +19,7 @@ body > div > div {
     height: 80%;
 }
 .first > div {
-    width: 100%;
+    flex-grow: 1;
 }
 .one {
     flex-grow: .8;
