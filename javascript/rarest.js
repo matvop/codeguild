@@ -1,3 +1,6 @@
+// Practice: Rarest
+// Given an object that maps names to ages, find the rarest age.
+
 "use strict";
 
 var namesToAges = {

@@ -16,13 +16,21 @@
 
 "use strict";
 
-var testList = [-1, 1, 2, 0, 3];
+var testList = [-1, 1, 2, 0, 3, -4, -11, 6, -2, 8, 10, 4, -8, 13, -4, 2];
 var testSum = 2;
 
 var find_sum_pairs = function(intList, sum) {
-    for (var int in intList) {
-        
+    var pairsArray = [];
+    for (var i = 0; i < (intList.length - 1); i++) {
+        var intOne = intList[i];
+        for (var j = i+1; j < intList.length; j++) {
+            var intTwo = intList[j];
+            if (intOne + intTwo === sum) {
+                pairsArray.push([intOne, intTwo]);
+            }
+        }
     }
+    return pairsArray;
 };
 
 
