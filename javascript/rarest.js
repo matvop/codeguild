@@ -12,7 +12,6 @@ var namesToAges = {
     "Stef": 22
 };
 
-
 var findAges = function(namesWithAges) { // creates an array of all the ages
     var ages = [];
     for (name in namesWithAges) {
@@ -30,10 +29,10 @@ var createFreqObj = function(agesArray) { // creates an obj of ages and frequenc
     return agesFrequency;
 };
 
-var pairsArray = function(agesFrequency) { // creates array of key/value pairs and sorts by least frequent
+var pairsArray = function(agesWithFreq) { // creates array of key/value pairs and sorts by least frequent
     var sortable = [];
-    for (var age in agesFrequency) {
-        sortable.push([age, agesFrequency[age]]);
+    for (var age in agesWithFreq) {
+        sortable.push([age, agesWithFreq[age]]);
     }
     return sortable.sort(function(a, b) {return a[1] - b[1]});
 };
