@@ -11,3 +11,31 @@ var namesToAges = {
     "Ryan": 25,
     "Stef": 22
 };
+
+
+var findAges = function(namesWithAges) { // creates an array of all the ages
+    var ages = [];
+    for (name in namesWithAges) {
+        var age = namesWithAges[name];
+        ages = ages.concat(age);
+    }
+    return ages;
+};
+
+var createFreqObj = function(agesArray) { // creates an obj of ages and frequency of occurance
+    var agesFrequency = {};
+    for (var age in agesArray) {
+        agesFrequency[agesArray[age]] = (agesFrequency[agesArray[age]] || 0) + 1; // increment frequency.
+    }
+    return agesFrequency;
+};
+
+var pairsArray = function(agesFrequency) { // creates array of key/value pairs and sorts by least frequent
+    var sortable = [];
+    for (var age in agesFrequency) {
+        sortable.push([age, agesFrequency[age]]);
+    }
+    return sortable.sort(function(a, b) {return a[1] - b[1]});
+};
+
+console.log(pairsArray(createFreqObj(findAges(namesToAges)))[0]);
