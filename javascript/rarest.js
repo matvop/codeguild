@@ -34,7 +34,7 @@ var pairsArray = function(agesWithFreq) { // creates array of key/value pairs an
     for (var age in agesWithFreq) {
         sortable.push([age, agesWithFreq[age]]);
     }
-    return sortable.sort(function(a, b) {return a[1] - b[1]});
+    return sortable.sort();
 };
 
 console.log(pairsArray(createFreqObj(findAges(namesToAges)))[0]);
