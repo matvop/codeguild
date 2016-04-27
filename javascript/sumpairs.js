@@ -21,9 +21,9 @@ var testSum = 2;
 
 var find_sum_pairs = function(intList, sum) {
     var pairsArray = [];
-    for (var i = 0; i < (intList.length - 1); i++) {
+    for (var i = 0; i < intList.length; i++) {
         var intOne = intList[i];
-        for (var j = i+1; j < intList.length; j++) {
+        for (var j = i + 1; j < intList.length; j++) {
             var intTwo = intList[j];
             if (intOne + intTwo === sum) {
                 pairsArray.push([intOne, intTwo]);
@@ -32,6 +32,5 @@ var find_sum_pairs = function(intList, sum) {
     }
     return pairsArray;
 };
-
 
 console.log(find_sum_pairs(testList, testSum));
