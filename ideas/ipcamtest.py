@@ -11,15 +11,11 @@ import numpy as np
 # stream = urllib.request.urlopen('http://esoteric.ddns.net:8181/axis-cgi/mjpg/video.cgi?date=1&clock=1&resolution=640x400&compression=15')
 
 url = 'http://esoteric.ddns.net:8181/axis-cgi/mjpg/video.cgi?date=1&clock=1&resolution=640x400&compression=15'
-r = requests.get(url, auth=('sudo', '281281'), stream=True)
-cap = cv2.VideoCapture(url)
-# Define the codec and create VideoWriter object
-fourcc = cv2.VideoWriter_fourcc(*'MJPG')
-out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,400))
+stream = requests.get(url, auth=('sudo', '281281'), stream=True)
 
 bytes = b''
 while True:
-    bytes += r.raw.read(1024)
+    bytes += stream.raw.read(1024)
     a = bytes.find(b'\xff\xd8')
     b = bytes.find(b'\xff\xd9')
     if a != -1 and b != -1:
@@ -33,22 +29,29 @@ while True:
         #     output.write(i)
         if cv2.waitKey(1) == 27:
             exit(0)
-            while(cap.isOpened()):
-                ret, frame = cap.read()
-                if ret==True:
-                    frame = cv2.flip(frame,0)
-                    # write the flipped frame
-                    out.write(frame)
-                    cv2.imshow('frame',frame)
-                    if cv2.waitKey(1) == 27:
-                        exit(0)
-                else:
-                    break
 
-# Release everything if job is finished
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+
+# cap = cv2.VideoCapture(url)
+# # Define the codec and create VideoWriter object
+# fourcc = cv2.VideoWriter_fourcc(*'MJPG')
+# out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,400))
+#
+# while(cap.isOpened()):
+#     ret, frame = cap.read()
+#     if ret==True:
+#         frame = cv2.flip(frame,0)
+#         # write the flipped frame
+#         out.write(frame)
+#         cv2.imshow('frame',frame)
+#         if cv2.waitKey(1) == 27:
+#             exit(0)
+#     else:
+#         break
+#
+# # Release everything if job is finished
+# cap.release()
+# out.release()
+# cv2.destroyAllWindows()
 
 # """READING FROM MJPG FILE"""
 # import cv2

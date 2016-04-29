@@ -8,7 +8,7 @@ var convertWordToLeetSpeak = function(originalWord) {
         "a":"4",
         "t":"7",
         "s":"Z"
-    };
+    }
 
     for (var originalChar in originalCharToLeetChar) {
         var leetChar = originalCharToLeetChar[originalChar];
@@ -17,6 +17,6 @@ var convertWordToLeetSpeak = function(originalWord) {
 
 
     return originalWord;
-};
+}
 
 console.log(convertWordToLeetSpeak("hello"));

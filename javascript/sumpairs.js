@@ -31,6 +31,6 @@ var find_sum_pairs = function(intList, sum) {
         }
     }
     return pairsArray;
-};
+}
 
 console.log(find_sum_pairs(testList, testSum));
