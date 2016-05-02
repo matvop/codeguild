@@ -1,0 +1,41 @@
+/*Elelment -> Class -> ID*/
+html {
+    background-color: gainsboro;
+}
+body {
+    font-family: monospace;
+    border-width:0px;
+}
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+form, img, p, a {
+    margin: 5px;
+}
+section {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+}
+div {
+    background-color: white;
+}
+.tile {
+    margin: 5px;
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
+}
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+img {
+    width: auto;
+    height: 300px;
+}
+p {
+    -webkit-margin-before: 0;
+    margin-bottom: 0;
+}
