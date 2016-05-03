@@ -13,17 +13,17 @@ body {
 }
 header {
     display: flex;
+    align-items: flex-start;;
 }
 h1 {
+    -webkit-margin-before: 0em;
     margin-right: 10px;
+    margin-bottom: 0;
     background-color: white;
     border-style: solid;
     border-width: 10px;
     border-color: white;
     box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
-}
-form {
-    margin: 20px;
 }
 article {
     display: flex;
@@ -36,8 +36,8 @@ article {
     border-width: 10px;
     border-color: white;
     box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
 }
 form, p, a {
     margin: 5px;
@@ -47,6 +47,10 @@ section {
     display: flex;
     flex-wrap: wrap;
     width: auto;
+}
+a {
+    display: flex;
+    justify-content: center;
 }
 .tile {
     display: flex;
