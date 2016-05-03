@@ -9,7 +9,8 @@ import numpy as np
 # '.cgi?date=1&clock=1&resolution=[640]x[360]'
 # stream = urllib.request.urlopen('http://50.73.56.89/axis-cgi/mjpg/video.cgi?date=1&clock=1&resolution=640x400&compression=15')
 # stream = urllib.request.urlopen('http://esoteric.ddns.net:8181/axis-cgi/mjpg/video.cgi?date=1&clock=1&resolution=640x400&compression=15')
-
+# http://50.73.56.89/mjpg/video.mjpg
+# http://sudo:281281@esoteric.ddns.net:8181/mjpg/video.mjpg
 url = 'http://esoteric.ddns.net:8181/axis-cgi/mjpg/video.cgi?date=1&clock=1&resolution=640x400&compression=15'
 stream = requests.get(url, auth=('sudo', '281281'), stream=True)
 
