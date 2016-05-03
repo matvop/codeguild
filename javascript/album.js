@@ -16,7 +16,7 @@ function createDelLink(tileElement) {
 
 function createTileElement(url) {
     var imageElement =  $("<img></img>").attr("src", url);
-    var fullSizeLink = $("<a></a>").attr("href", url).attr("target", "_blank").append(imageElement).toggleClass("fullSizeLink");
+    var fullSizeLink = $("<a></a>").attr("href", url).append(imageElement).toggleClass("image-popup-no-margins");
     var tileElement = $("<div></div>").append(fullSizeLink).toggleClass("tile");
     var paraElement = $("<p></p>").text(url);
     var delLink = createDelLink(tileElement);
@@ -42,6 +42,21 @@ function registerGlobalEventHandlers() {
         event.preventDefault();
         getUrlAndAddToGrid();
         updateTileCount();
+        $('form').children('#url-input').val('');
+        $('.image-popup-no-margins').magnificPopup({
+        		type: 'image',
+        		closeOnContentClick: true,
+        		closeBtnInside: false,
+        		fixedContentPos: true,
+        		mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+        		image: {
+        			verticalFit: true
+        		},
+        		zoom: {
+        			enabled: true,
+        			duration: 1000 // don't foget to change the duration also in CSS
+        		}
+        });
     });
 }
 
