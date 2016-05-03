@@ -1,0 +1,57 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: monospace;
+}
+h1 {
+    background: black;
+    color: white;
+}
+img {
+    width: 100%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+    width: 20%;
+    min-width: 120px;
+}
+.logo {
+    margin-top: 20px;
+    height: 100px;
+}
+.link {
+    margin-top: 10px;
+    height: 12px;
+}
+.logo, .link {
+    width: 70%;
+    background: white;
+}
+.content-container {
+    color: white;
+    padding: 20px;
+    background: white;
+}
+.sep-text-space {
+    display: flex;
+    justify-content: space-between;
+}
+.small-para {
+    height: 100px;
+    width: 30%;
+    background: black;
+}
+.full-para {
+    background: black;
+    width: 100%;
+    height: 100px;
+}
