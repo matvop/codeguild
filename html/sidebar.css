@@ -7,6 +7,7 @@ html, body {
 h1 {
     background: black;
     color: white;
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
 }
 img {
     width: 100%;
@@ -15,43 +16,42 @@ img {
     display: flex;
     flex-direction: row;
 }
-
 .sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: black;
     width: 20%;
-    min-width: 120px;
+    min-width: 150px;
 }
 .logo {
     margin-top: 20px;
-    height: 100px;
+    width: 70%;
 }
 .link {
     margin-top: 10px;
-    height: 12px;
-}
-.logo, .link {
     width: 70%;
-    background: white;
+    background: gainsboro;
 }
 .content-container {
     color: white;
     padding: 20px;
-    background: white;
+    background: gainsboro;
 }
 .sep-text-space {
     display: flex;
     justify-content: space-between;
 }
 .small-para {
-    height: 100px;
     width: 30%;
     background: black;
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
 }
 .full-para {
     background: black;
     width: 100%;
-    height: 100px;
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
+}
+#splash {
+    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
 }
