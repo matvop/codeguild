@@ -9,15 +9,12 @@ body {
 .wrap {
     display: flex;
     background-color: none;
+    justify-content: space-between;
 }
 header {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 50%;
 }
 h1 {
-    margin-left: 5px;
     margin-right: 10px;
     background-color: white;
     border-style: solid;
@@ -26,19 +23,14 @@ h1 {
     box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
 }
 form {
-    background-color: white;
     margin: 20px;
-    box-shadow: 1px 1px 10px 5px rgba(192, 192, 192, 1);
 }
 article {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    flex-direction: column;
     float: right;
-    width: 50%;
 }
 .dynamic {
-    justify-content: flex-end;
     background-color: white;
     border-style: solid;
     border-width: 10px;
