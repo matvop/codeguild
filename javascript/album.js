@@ -9,14 +9,15 @@ function createDelLink(tileElement) {
     delLink.on("click", function (event) {
         event.preventDefault();
         tileElement.remove("div");
-        includeTileCount();
+        updateTileCount();
     });
     return delLink;
 }
 
-function createImageElement(url) {
+function createTileElement(url) {
     var imageElement =  $("<img></img>").attr("src", url);
-    var tileElement = $("<div></div>").append(imageElement).toggleClass("tile");
+    var fullSizeLink = $("<a></a>").attr("href", url).attr("target", "_blank").append(imageElement).toggleClass("fullSizeLink");
+    var tileElement = $("<div></div>").append(fullSizeLink).toggleClass("tile");
     var paraElement = $("<p></p>").text(url);
     var delLink = createDelLink(tileElement);
     var flexDivElement = $('<div></div>').toggleClass("flex").append(paraElement).append(delLink);
@@ -26,22 +27,24 @@ function createImageElement(url) {
 
 function getUrlAndAddToGrid() {
     var imgUrl = getImageUrl();
-    var imageElement = createImageElement(imgUrl);
+    var imageElement = createTileElement(imgUrl);
     return $('section').append(imageElement);
 }
 
-function includeTileCount() {
+function updateTileCount() {
     var tileCount = $('.tile').length;
-    return $("h2").text('Images uploaded: ' + tileCount);
+    return $('.dynamic').text('Images in your album: ' + tileCount);
 }
 
 function registerGlobalEventHandlers() {
+    updateTileCount();
     $("form").on("submit", function (event) {
         event.preventDefault();
         getUrlAndAddToGrid();
-        includeTileCount();
+        updateTileCount();
     });
 }
+
 
 $(document).ready(function () {
     registerGlobalEventHandlers();
