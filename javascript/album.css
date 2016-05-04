@@ -5,12 +5,19 @@ html {
 body {
     font-family: monospace;
     border-width:0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
 }
-.wrap {
-    display: flex;
+.main {
+    flex: 1;
     background-color: none;
+}
+header {
     justify-content: space-between;
+    display: flex;
+
 }
 header {
     display: flex;
@@ -75,6 +82,22 @@ p {
     -webkit-margin-before: 0;
     margin-bottom: 0;
 }
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+.contact-info {
+    display: flex;
+
+}
+#linkedin, #email {
+    height: 20px;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
+
 
 /**
  * Simple fade transition,

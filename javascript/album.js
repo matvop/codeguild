@@ -126,8 +126,11 @@ function registerGlobalEventHandlers() {
         });
     });
 }
-
+function setFocusToTextBox(){
+    document.getElementById("url-input").focus();
+}
 
 $(document).ready(function () {
     registerGlobalEventHandlers();
+    setFocusToTextBox();
 });
