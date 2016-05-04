@@ -81,10 +81,19 @@ function checkForFileExt(url) {
     return fileExt;
 }
 
+function getMediaURL() {
+    return $("#url-input").val();
+}
+
+function normalizeYTURL(url) {
+    return url.slice(0,24);
+}
+
 function getUploadedMediaType() {
-    var mediaURL = $("#url-input").val();
+    var mediaURL = getMediaURL();
+    var ytURL = normalizeYTURL(mediaURL);
     var fileExt = checkForFileExt(mediaURL);
-    if (mediaURL.slice(0,24) === "https://www.youtube.com/") {
+    if (ytURL === "https://www.youtube.com/") {
         getUrlAndAddYtToGrid(mediaURL);
     }
     else if (fileExt === "jpg" || fileExt === "png" || fileExt === "gif" || fileExt === "bmp" ) {
@@ -126,9 +135,11 @@ function registerGlobalEventHandlers() {
         });
     });
 }
+
 function setFocusToTextBox(){
     document.getElementById("url-input").focus();
 }
+
 
 $(document).ready(function () {
     registerGlobalEventHandlers();

@@ -16,9 +16,8 @@ header {
     justify-content: center;
     height: 50px;
 }
-a {
+.popup-with-form {
     font-size: 3.0em;
-
 }
 .main {
     display: flex;

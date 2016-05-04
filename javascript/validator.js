@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 function isAlphaOrSpace(str) {
@@ -41,62 +41,62 @@ function isValidPhone(str) {
 }
 
 function isValidNameCount(str) {
-    var nameArray = str.split(" ");
+    var nameArray = str.split(' ');
     return nameArray.length === 2;
 }
 
 function validateName() {
-    var nameString = document.getElementById("name").value;
+    var nameString = $('#name').val();
     var countCheck = isValidNameCount(nameString);
-    var nameArray = nameString.split(" ");
+    var nameArray = nameString.split(' ');
     var lastName = nameArray[0];
     var firstName = nameArray[1];
     var responseFirst = isAlphaOrSpace(lastName);
     var responseLast = isAlphaOrSpace(firstName);
     if (responseLast === true && responseFirst === true && countCheck === true) {
-        document.getElementById("name").style.backgroundColor = "lightgreen";
+        $('#name').css('background-color', 'lightgreen');
     }
     else if (responseLast === false || responseFirst === false || countCheck === false) {
-        document.getElementById("name").style.backgroundColor = "pink";
+        $('#name').css('background-color', 'pink');
         return false;
     }
 }
 
 function validateDate() {
-    var dateString = document.getElementById("dob").value;
+    var dateString = $('#dob').val();
     var response = isValidDate(dateString);
     if (response === true) {
-        document.getElementById("dob").style.backgroundColor = "lightgreen";
+        $('#dob').css('background-color', 'lightgreen');
     }
     else if (response === false) {
-        document.getElementById("dob").style.backgroundColor = "pink";
+        $('#dob').css('background-color', 'pink');
         return false;
     }
 }
 
 function validatePhone() {
-    var phoneString = document.getElementById("phone-num").value;
+    var phoneString = $('#phone-num').val();
     var response = isValidPhone(phoneString);
     if (response === true) {
-        document.getElementById("phone-num").style.backgroundColor = "lightgreen";
+        $('#phone-num').css('background-color', 'lightgreen');
     }
     else if (response === false) {
-        document.getElementById("phone-num").style.backgroundColor = "pink";
+        $('#phone-num').css('background-color', 'pink');
         return false;
     }
 }
 
 function validateForm() {
     if (validateName() === false) {
-        alert("Name must be filled out");
+        alert('Name must be filled out');
         return false;
     }
     if (validateDate() === false) {
-        alert("Date of birth must be filled out");
+        alert('Date of birth must be filled out');
         return false;
     }
     if (validatePhone() === false) {
-        alert("Phone number must be filled out");
+        alert('Phone number must be filled out');
         return false;
     }
 }
