@@ -100,3 +100,12 @@ function validatePhone() {
         return false;
     }
 }
+
+
+$(document).ready(function() {
+  $('.popup-with-form').magnificPopup({
+    type: 'inline',
+    preloader: false,
+    focus: '#name',
+  });
+});

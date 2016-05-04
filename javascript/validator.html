@@ -4,30 +4,34 @@
         <meta charset="utf-8">
         <title>Validator</title>
         <link href="validator.css" rel="stylesheet">
+        <link href="all.min.css" rel="stylesheet">
     </head>
     <body>
-        <div class="wrapper">
-            <form name="personal-info" onsubmit="return validateForm()" method="post">
-                <div class="name">
-                    <label for="name">Please enter your name (Last First):</label><br>
-                    <input type="text" placeholder="ex: Smith John"name="name" id="name" onkeyup="validateName()">
-                </div>
-                <div class="date-of-birth">
-                    <label for="dob">Please enter your date of birth (YYYY-MM-DD):</label><br>
-                    <input type="text" placeholder="ex: 1988-01-23" name="dob" id="dob" onkeyup="validateDate()">
-                </div>
-                <div class="phone-number">
-                    <label for="phone-num">Please enter your phone# (555-555-5555):</label><br>
-                    <input type="text" placeholder="ex: 555-555-5555" name="phone-num" id="phone-num" onkeyup="validatePhone()">
-                </div>
-                <div class="submit-element">
+        <a class="popup-with-form" href="#info-form">Open form</a>
+        <form id="info-form" class="mfp-hide white-popup-block" name="personal-info" onsubmit="return validateForm()" method="post">
+            <h1>Form</h1>
+        	<fieldset style="border:0;">
+                <ol>
+                    <li>
+                        <label for="name">Name:</label>
+                        <input type="text" placeholder="Last First" name="name" id="name" onkeyup="validateName()">
+                    </li>
+                    <li>
+                        <label for="dob">Date of birth:</label>
+                        <input type="text" placeholder="Eg. 1988-01-23" name="dob" id="dob" onkeyup="validateDate()">
+                    </li>
+                    <li>
+                        <label for="phone-num">Phone:</label>
+                        <input type="text" placeholder="Eg. 555-555-5555" name="phone-num" id="phone-num" onkeyup="validatePhone()">
+                    </li>
+                </ol>
                     <input type="submit">
-                </div>
-            </form>
-        </div>
+            </fieldset>
+        </form>
     </body>
     <footer>
         <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+        <script src="jquery.magnific-popup.js"></script>
         <script src="validator.js"></script>
     </footer>
 </html>
