@@ -1,21 +1,6 @@
 "use strict";
 
 
-function validateForm() {
-    if (validateName() === false) {
-        alert("Name must be filled out");
-        return false;
-    }
-    if (validateDate() === false) {
-        alert("Date of birth must be filled out");
-        return false;
-    }
-    if (validatePhone() === false) {
-        alert("Phone number must be filled out");
-        return false;
-    }
-}
-
 function isAlphaOrSpace(str) {
     return /^[a-z ]+$/i.test(str);
 }
@@ -48,7 +33,7 @@ function isValidDate(str) {
             return false;
         }
     }
-     return true;
+    return true;
 }
 
 function isValidPhone(str) {
@@ -97,6 +82,21 @@ function validatePhone() {
     }
     else if (response === false) {
         document.getElementById("phone-num").style.backgroundColor = "pink";
+        return false;
+    }
+}
+
+function validateForm() {
+    if (validateName() === false) {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (validateDate() === false) {
+        alert("Date of birth must be filled out");
+        return false;
+    }
+    if (validatePhone() === false) {
+        alert("Phone number must be filled out");
         return false;
     }
 }
