@@ -7,31 +7,42 @@
         <link href="all.min.css" rel="stylesheet">
     </head>
     <body>
-        <a class="popup-with-form" href="#info-form">Open form</a>
-        <form id="info-form" class="mfp-hide white-popup-block" name="personal-info" onsubmit="return validateForm()" method="post">
-            <h1>Form</h1>
-        	<fieldset style="border:0;">
-                <ol>
-                    <li>
-                        <label for="name">Name:</label>
-                        <input type="text" placeholder="Last First" name="name" id="name" onkeyup="validateName()">
-                    </li>
-                    <li>
-                        <label for="dob">Date of birth:</label>
-                        <input type="text" placeholder="Eg. 1988-01-23" name="dob" id="dob" onkeyup="validateDate()">
-                    </li>
-                    <li>
-                        <label for="phone-num">Phone:</label>
-                        <input type="text" placeholder="Eg. 555-555-5555" name="phone-num" id="phone-num" onkeyup="validatePhone()">
-                    </li>
-                </ol>
-                    <input type="submit">
-            </fieldset>
-        </form>
+        <header>
+            <a class="popup-with-form" href="#info-form">Open form</a>
+        </header>
+        <div class="main">
+            <form id="info-form" class="mfp-hide white-popup-block" name="personal-info" onsubmit="return validateForm()" method="post">
+                <h1>Form</h1>
+            	<fieldset style="border:0;">
+                    <ol>
+                        <li>
+                            <label for="name">Name:</label>
+                            <input type="text" placeholder="Last First" name="name" id="name" onkeyup="validateName()">
+                        </li>
+                        <li>
+                            <label for="dob">Date of birth:</label>
+                            <input type="text" placeholder="Eg. 1988-01-23" name="dob" id="dob" onkeyup="validateDate()">
+                        </li>
+                        <li>
+                            <label for="phone-num">Phone:</label>
+                            <input type="text" placeholder="Eg. 555-555-5555" name="phone-num" id="phone-num" onkeyup="validatePhone()">
+                        </li>
+                    </ol>
+                        <input type="submit">
+                </fieldset>
+            </form>
+        </div>
     </body>
-    <footer>
-        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
-        <script src="jquery.magnific-popup.js"></script>
-        <script src="validator.js"></script>
+    <footer class="bottom">
+        <div class="contact-info">
+            <a href="https://www.linkedin.com/in/mattvoelpel"><img id="linkedin" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/100px-LinkedIn_Logo.svg.png"></a>
+            <a href="mailto:matvop@gmail.com"><img id="email" src="http://chrisholmquistphotography.com/files/4313/9108/0434/Communication-email-2-icon.png"></a>
+        </div>
+        <div>
+            Created by Matt Voelpel 2016
+        </div>
     </footer>
+    <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script src="jquery.magnific-popup.js"></script>
+    <script src="validator.js"></script>
 </html>

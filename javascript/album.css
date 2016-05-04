@@ -10,17 +10,9 @@ body {
     min-height: 100vh;
     margin: 0;
 }
-.main {
-    flex: 1;
-    background-color: none;
-}
 header {
+    display: flex;
     justify-content: space-between;
-    display: flex;
-
-}
-header {
-    display: flex;
     align-items: flex-start;
 }
 h1 {
@@ -50,6 +42,10 @@ article {
 }
 form, p, a {
     margin: 5px;
+}
+.main {
+    flex: 1;
+    background-color: none;
 }
 section {
     clear: both;
@@ -90,9 +86,10 @@ footer {
 }
 .contact-info {
     display: flex;
-
 }
 #linkedin, #email {
+    margin-left: 5px;
+    margin-right: 5px;
     height: 20px;
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
