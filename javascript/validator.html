@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Validator</title>
+        <link href="validator.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+            <form name="personal-info" onsubmit="return validateForm()" method="post">
+                <div class="name">
+                    <label for="name">Please enter your name (Last First):</label><br>
+                    <input type="text" name="name" id="name" onkeyup="validateName()">
+                </div>
+                <div class="date-of-birth">
+                    <label for="dob">Please enter your date of birth (YYYY-MM-DD):</label><br>
+                    <input type="text" name="dob" id="dob" onkeyup="validateDate()">
+                </div>
+                <div class="phone-number">
+                    <label for="phone-num">Please enter your phone# (555-555-5555):</label><br>
+                    <input type="text" name="phone-num" id="phone-num" onkeyup="validatePhone()">
+                </div>
+                <div class="submit-element">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </body>
+    <footer>
+        <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+        <script src="validator.js"></script>
+    </footer>
+</html>
