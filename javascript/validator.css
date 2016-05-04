@@ -16,9 +16,15 @@ header {
     justify-content: center;
     height: 50px;
 }
+a {
+    font-size: 3.0em;
+
+}
 .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
-    background-color: none;
 }
 footer {
     display: flex;
