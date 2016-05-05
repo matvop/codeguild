@@ -1,6 +1,6 @@
 /*Elelment -> Class -> ID*/
 html {
-    background-color: gainsboro;
+    background-color: mediumseagreen;
 }
 body {
     display: flex;
@@ -12,13 +12,12 @@ body {
 }
 header {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 50px;
+    margin-top: 10px;
+    /*height: 340px;*/
 }
 .main {
     flex: 1;
-    background-color: none;
 }
 section {
     clear: both;
@@ -42,15 +41,12 @@ section {
 .delLink:link {
     color: white;
 }
-
 .delLink:visited {
     color: white;
 }
-
 .delLink:hover {
     color: white;
 }
-
 .delLink:active {
     color: white;
 }
@@ -59,27 +55,27 @@ section {
     justify-content: flex-end;
 }
 .div-for-die {
-    box-shadow: 1px 1px 10px 5px rgba(150, 150, 150, 1);
-    background-color: white;
+    box-shadow: 1px 1px 10px 5px rgba(30, 30, 30, 1);
+    background-color: #DE0000;
     border-radius: 30px;
     height: 200px;
+}
+img {
+    -webkit-filter: brightness(10) contrast(10) grayscale(1);
 }
 .dynamic {
     font-size: 3.0em;
 }
 footer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     margin: 5px;
 }
-.contact-info {
-    display: flex;
-}
-#linkedin, #email {
+/*#linkedin, #email {
     margin-left: 5px;
     margin-right: 5px;
     height: 20px;
-    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
+*/
