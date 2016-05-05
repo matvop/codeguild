@@ -20,6 +20,53 @@ header {
     flex: 1;
     background-color: none;
 }
+section {
+    clear: both;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: 0;
+}
+.tile {
+    display: flex;
+    flex-direction: column;
+    background-color: none;
+    margin: 5px;
+}
+.delLink {
+    font-size: 1.5em;
+    text-decoration: none;
+    font-weight: bold;
+}
+.delLink:link {
+    color: white;
+}
+
+.delLink:visited {
+    color: white;
+}
+
+.delLink:hover {
+    color: white;
+}
+
+.delLink:active {
+    color: white;
+}
+.removeDie {
+    display: flex;
+    justify-content: flex-end;
+}
+.div-for-die {
+    box-shadow: 1px 1px 10px 5px rgba(150, 150, 150, 1);
+    background-color: white;
+    border-radius: 30px;
+    height: 200px;
+}
+.dynamic {
+    font-size: 3.0em;
+}
 footer {
     display: flex;
     flex-direction: column;

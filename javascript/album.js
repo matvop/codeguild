@@ -1,52 +1,52 @@
-"use strict";
+'use strict';
 
 
 function createDelLink(tileElement) {
-    var delLink = $("<a></a>").text("X").attr("href", "");
-    delLink.on("click", function (event) {
+    var delLink = $('<a></a>').text('X').attr('href', '');
+    delLink.on('click', function (event) {
         event.preventDefault();
-        tileElement.remove("div");
+        tileElement.remove('div');
         updateTileCount();
     });
     return delLink;
 }
 
 function createImgTileElement(url) {
-    var imageElement =  $("<img></img>").attr("src", url);
-    var fullSizeLink = $("<a></a>").attr("href", url).append(imageElement).toggleClass("image-popup-no-margins");
-    var tileElement = $("<div></div>").append(fullSizeLink).toggleClass("tile");
-    var paraElement = $("<p></p>").text(url);
+    var imageElement =  $('<img></img>').attr('src', url);
+    var fullSizeLink = $('<a></a>').attr('href', url).append(imageElement).toggleClass('image-popup-no-margins');
+    var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
+    var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass("flex").append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
 
 function createYtTileElement(url) {
     var videoName = url.slice(-11);
-    var thumbnailUrl = ("http://img.youtube.com/vi/" + videoName + "/0.jpg");
-    var videoThumbnailElement = $("<img></img>").attr("src", thumbnailUrl);
-    var fullSizeLink = $("<a></a>").attr("href", url).append(videoThumbnailElement).toggleClass("popup-youtube");
-    var tileElement = $("<div></div>").append(fullSizeLink).toggleClass("tile");
-    var paraElement = $("<p></p>").text(url);
+    var thumbnailUrl = ('http://img.youtube.com/vi/' + videoName + '/0.jpg');
+    var videoThumbnailElement = $('<img></img>').attr('src', thumbnailUrl);
+    var fullSizeLink = $('<a></a>').attr('href', url).append(videoThumbnailElement).toggleClass('popup-youtube');
+    var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
+    var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass("flex").append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
 
 function createWebmTileElement(url) {
     var webmName = url.slice(-12, -5);
-    var thumbnailUrl = ("http://i.imgur.com/" + webmName + "b" + ".jpg");
-    var videoThumbnailElement = $("<img></img>").attr("src", thumbnailUrl);
-    var webmSourceElement = $("<source></source>").attr('src', url).attr('type', "video/webm");
-    var mp4SourceElement = $("<source></source>").attr('src', url).attr('type', "video/mp4");
-    var webmElement =  $("<video></video>").attr("autoplay", "autoplay").attr("loop", "loop").attr("muted", "muted").append(webmSourceElement).append(mp4SourceElement);
-    var fullSizeLink = $("<a></a>").attr("href", url).append(videoThumbnailElement).toggleClass("popup-vimeo");
-    var tileElement = $("<div></div>").append(fullSizeLink).toggleClass("tile");
-    var paraElement = $("<p></p>").text(url);
+    var thumbnailUrl = ('http://i.imgur.com/' + webmName + 'b' + '.jpg');
+    var videoThumbnailElement = $('<img></img>').attr('src', thumbnailUrl);
+    var webmSourceElement = $('<source></source>').attr('src', url).attr('type', 'video/webm');
+    var mp4SourceElement = $('<source></source>').attr('src', url).attr('type', 'video/mp4');
+    var webmElement =  $('<video></video>').attr('autoplay', 'autoplay').attr('loop', 'loop').attr('muted', 'muted').append(webmSourceElement).append(mp4SourceElement);
+    var fullSizeLink = $('<a></a>').attr('href', url).append(videoThumbnailElement).toggleClass('popup-vimeo');
+    var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
+    var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass("flex").append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
@@ -72,17 +72,17 @@ function updateTileCount() {
 }
 
 function checkForFileExt(url) {
-    if (url.charAt(url.length - 4) === ".") {
+    if (url.charAt(url.length - 4) === '.') {
         var fileExt = url.slice(-3);
     }
-    else if (url.charAt(url.length - 5) === ".") {
+    else if (url.charAt(url.length - 5) === '.') {
         var fileExt = url.slice(-4);
     }
     return fileExt;
 }
 
 function getMediaURL() {
-    return $("#url-input").val();
+    return $('#url-input').val();
 }
 
 function normalizeYTURL(url) {
@@ -93,20 +93,20 @@ function getUploadedMediaType() {
     var mediaURL = getMediaURL();
     var ytURL = normalizeYTURL(mediaURL);
     var fileExt = checkForFileExt(mediaURL);
-    if (ytURL === "https://www.youtube.com/") {
+    if (ytURL === 'https://www.youtube.com/') {
         getUrlAndAddYtToGrid(mediaURL);
     }
-    else if (fileExt === "jpg" || fileExt === "png" || fileExt === "gif" || fileExt === "bmp" ) {
+    else if (fileExt === 'jpg' || fileExt === 'png' || fileExt === 'gif' || fileExt === 'bmp' ) {
         getUrlAndAddImgToGrid(mediaURL);
     }
-    else if (fileExt === "webm") {
+    else if (fileExt === 'webm') {
         getUrlAndAddWebmToGrid(mediaURL);
     }
 }
 
 function registerGlobalEventHandlers() {
     updateTileCount();
-    $("form").on("submit", function (event) {
+    $('form').on('submit', function (event) {
         event.preventDefault();
         getUploadedMediaType(); //added to test mediaURL
         updateTileCount();
@@ -137,7 +137,7 @@ function registerGlobalEventHandlers() {
 }
 
 function setFocusToTextBox(){
-    document.getElementById("url-input").focus();
+    document.getElementById('url-input').focus();
 }
 
 
