@@ -1,19 +1,18 @@
-'use strict;'
+// Practice: Visual Dice
+// Save your solution as visualdice.html, visualdice.css, and visualdice.js.
+//
+// Give the user a number input box with a button 'roll'. When they click that button, make that many 6-sided dice appear on the screen.
+//
+// The dice should appear visually as dice, although for testing you can just start with numbers. Come up with any reasonable way to display the visual dice.
+//
+// If the user clicks any of the dice, it re-rolls just that one. If they re-click the roll button, erase the dice and roll new ones.
+//
+// At the bottom of the screen, show the sum of all the dice currently out.
 
 
-function createDelLink(tileElement) {
-    var delLink = $('<a></a>').text('X').attr('href', '').toggleClass('delLink');
-    delLink.on('click', function (event) {
-        event.preventDefault();
-        removeTileElement(tileElement);
-        main();
-    });
-    return delLink;
-}
 
-function reRollDie() {
+'use strict';
 
-}
 
 function removeTileElement(tile) {
     return tile.remove();
@@ -21,8 +20,8 @@ function removeTileElement(tile) {
 
 function updateDiceArray() {
     var diceArray = [];
-    $(".tile").each(function() {
-        diceArray.push(this.id);
+    $(".tile").each(function(index, element) {
+        diceArray.push(element.id);
     });
     return diceArray.map(Number);
 }
@@ -76,22 +75,19 @@ function createDieTileElement(dieNumber) {
     dieImageElement.toggleClass('die');
     dieImageElement.attr('src', imageURL);
 
-    var divForDie = $('<div></div>');
-    divForDie.toggleClass('div-for-die');
-    divForDie.append(dieImageElement);
-
-    var removeDieLinkElement = $('<div></div>');
-    removeDieLinkElement.toggleClass('removeDie');
-
     var tileElement = $('<div></div>');
     tileElement.toggleClass('tile');
-    tileElement.append(divForDie);
+    tileElement.addClass('spinEffect');
+    if (dieNumber === 6){
+        tileElement.addClass('six');
+    }
+    tileElement.append(dieImageElement);
     tileElement.attr('id', dieNumber);
-
-    var delLink = createDelLink(tileElement);
-    removeDieLinkElement.append(delLink);
-    tileElement.prepend(removeDieLinkElement);
-
+    tileElement.on('click', function (event) {
+        var newDie = reRollDie();
+        replaceDie(tileElement, newDie);
+        main();
+    });
     return tileElement;
 }
 
@@ -99,7 +95,18 @@ function addTileToGrid(tileElement) {
     return $('.grid').append(tileElement);
 }
 
-function main() {
+function replaceDie(oldDie, newDie) {
+    oldDie.replaceWith(newDie);
+}
+
+function reRollDie() {
+    var numberOfSides = getSides();
+    var dieNumber = genDieNumber(numberOfSides);
+    var dieTileElement = createDieTileElement(dieNumber);
+    return dieTileElement;
+}
+
+function rollDice() {
     if ($('.tile').length === 0) {
         for (var quantity = getNumberOfDice(); quantity > 0; quantity--) {
             var numberOfSides = getSides();
@@ -108,7 +115,11 @@ function main() {
             addTileToGrid(dieTileElement);
         }
     }
-    diceArray = updateDiceArray();
+}
+
+function main() {
+    rollDice();
+    var diceArray = updateDiceArray();
     var score = getScore(diceArray);
     updateScore(score);
 }

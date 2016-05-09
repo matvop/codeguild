@@ -1,0 +1,60 @@
+html {
+    background-color: mediumseagreen;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+    border-width:0px;
+    min-height: 100vh;
+    margin: 0;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+#start, #stop {
+    padding: 15px 32px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.5em;
+    color: white;
+    outline: none;
+    border-width: medium;
+}
+#start {
+    background-color: limegreen;
+    border-color: darkgreen;
+    box-shadow: 1px 1px 10px 2px rgba(50, 50, 50, 1);
+}
+#stop {
+    background-color: firebrick;
+    border-color: darkred;
+    box-shadow: 1px 1px 10px 2px rgba(50, 50, 50, 1);
+}
+.app-title {
+    font-size: 3.0em;
+}
+.main {
+    flex: 1;
+}
+section {
+    display: flex;
+    justify-content: center;
+}
+
+.tile, img {
+    background-color: none;
+    margin: 5px;
+    height: 100px;
+    width: 150px;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
