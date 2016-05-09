@@ -55,7 +55,7 @@ function animateTheBoard(imgArray) {
         var randomHole = $(imgArray[i]);
         counter.i.push(randomHole);
         if (randomHole.attr('src') === 'mole.png') {
-            getEmptyHole(imgArray)
+            getEmptyHole(imgArray);
         }
         randomHole.attr('src', 'mole.png');
         randomHole.on('click', function (event) {
