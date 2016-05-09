@@ -1,26 +1,24 @@
 // Practice: Whack-A-Mole
 // Save your solution as mole.html, mole.css, and mole.js.
 //
-// Make a 5x4 grid of hole images. Every second, randomly pick a hole in the grid and turn it's image into a mole. If the user clicks on a mole image, turn it back into a hole.
+// Make a 5x4 grid of hole images. Every second, randomly pick a hole in the
+// grid and turn it's image into a mole. If the user clicks on a mole image,
+// turn it back into a hole.
 //
 // Use the setInterval function to run a callback function periodically.
 'use strict';
 
 
-function createRow() {
-    var row = $('<article></article>');
-    row.toggleClass('column');
-    return row;
+function createColumn() {
+    var col = $('<article></article>');
+    col.toggleClass('column');
+    return col;
 }
 
 function createTileElement() {
     var imageElement = $('<img></img>');
     imageElement.toggleClass('hole');
     imageElement.attr('src', 'hole.png');
-    // imageElement.on('click', function (event) {
-    //     event.preventDefault();
-    // });
-
     var tileElement = $('<div></div>');
     tileElement.toggleClass('tile');
     tileElement.append(imageElement);
@@ -30,7 +28,7 @@ function createTileElement() {
 function createRowsAndTilesThenPopulateTheBoard() {
     var imgArray = [];
     for (var colNum = 1; colNum < 6; colNum++) {
-        var articleCol = createRow();
+        var articleCol = createColumn();
         $('.grid').append(articleCol);
         for (var tileNum = 1; tileNum < 5; tileNum++) {
             var tile = createTileElement();
@@ -42,25 +40,33 @@ function createRowsAndTilesThenPopulateTheBoard() {
     return imgArray;
 }
 
+function getEmptyHole(imgArray) {
+    var i = Math.round((Math.random()) * imgArray.length);
+    if (i === imgArray.length) --i;
+    var randomHole = $(imgArray[i]);
+    return randomHole;
+}
+
 function animateTheBoard(imgArray) {
-    // var counter = {i : []};
-    return setInterval(function() {
+    var counter = {i : []};
+    var animate = setInterval(function() {
         var i = Math.round((Math.random()) * imgArray.length);
         if (i === imgArray.length) --i;
         var randomHole = $(imgArray[i]);
-        // counter.i.push(randomHole);
-        //
-        // if (randomHole.attr('src') === 'mole.png') {
-        //     var i = Math.round((Math.random()) * imgArray.length);
-        //     if (i === imgArray.length) --i;
-        //     var randomHole = $(imgArray[i]);
-        // }
+        counter.i.push(randomHole);
+        if (randomHole.attr('src') === 'mole.png') {
+            getEmptyHole(imgArray)
+        }
         randomHole.attr('src', 'mole.png');
-        randomHole.attr('id', 'mole');
         randomHole.on('click', function (event) {
             randomHole.attr('src', 'hole.png');
         });
     }, 1000);
+    $('#stop').on('click', function (event) {
+        clearInterval(animate);
+        // $('article').remove();
+    });
+    return animate;
 }
 
 
@@ -76,13 +82,10 @@ function registerGlobalEventHandlers() {
         $('article').remove();
         main();
     });
-    $('#stop').on('click', function (event) {
-        clearInterval(animateTheBoard());
-        // $('article').remove();
-    });
-    setTimeout(function (event) {
-        $('#mole').attr('src', 'hole.png');
-    }, 1000);
+    // $('#stop').on('click', function (event) {
+    //     clearInterval(animateTheBoard());
+    //     // $('article').remove();
+    // });
 }
 
 
