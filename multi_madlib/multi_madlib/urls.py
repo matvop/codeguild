@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from . import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^madlib1', views.render_madlib1),
+    url(r'^madlib2', views.render_madlib2),
+    url(r'^madlib3', views.render_madlib3),
 ]
