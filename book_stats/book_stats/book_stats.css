@@ -1,0 +1,39 @@
+html {
+    background-color: gainsboro;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+    border-width:0px;
+    min-height: 100vh;
+    margin: 0;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+.contact-info {
+    display: flex;
+}
+#linkedin, #email {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 20px;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}

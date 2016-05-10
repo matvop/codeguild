@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Book Stats</title>
+        <link href='book_stats.css' rel='stylesheet'>
+    </head>
+    <body>
+        <header>
+            <h1>Word Counter</h1>
+        </header>
+        <div class='main'>
+            <form action='http://localhost:8000/count' id='word-choice' name='user-input' method='GET'>
+                <div>Please enter a word</div>
+                    <label for='word'>Word:</label>
+                    <input type='text' placeholder='Eg. Book or book' name='word'>
+                    <input type='submit'>
+            </form>
+        </div>
+        <footer class='bottom'>
+            <div class='contact-info'>
+                <a href='https://www.linkedin.com/in/mattvoelpel'><img id='linkedin' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/100px-LinkedIn_Logo.svg.png'></a>
+                <a href='mailto:matvop@gmail.com'><img id='email' src='http://chrisholmquistphotography.com/files/4313/9108/0434/Communication-email-2-icon.png'></a>
+            </div>
+            <div>
+                Created by Matt Voelpel 2016
+            </div>
+        </footer>
+
+    </body>
+    <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
+    <script src='jquery.magnific-popup.js'></script>
+    <script src='validator.js'></script>
+</html>
