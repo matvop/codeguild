@@ -31,6 +31,10 @@ h2 {
     justify-content: space-around;
     color: dodgerblue;
 }
+#num {
+    margin: 0;
+    padding: 0;
+}
 footer {
     display: flex;
     flex-direction: column;

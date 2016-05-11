@@ -17,5 +17,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.jokes),
+    url(r'^$', views.jokes, name='index'),
+    # url(r'^form/submit$', views.render_ack),
 ]
