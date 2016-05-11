@@ -3,19 +3,22 @@
     <head>
         <meta charset='utf-8'>
         <title>Book Stats</title>
-        <link href='book_stats.css' rel='stylesheet'>
+        <link href='static/book_stats/book_stats.css' rel='stylesheet'>
     </head>
     <body>
         <header>
-            <h1>Word Counter</h1>
+            <h1>Book Stats - Word Counter</h1>
         </header>
         <div class='main'>
-            <form action='http://localhost:8000/count' id='word-choice' name='user-input' method='GET'>
-                <div>Please enter a word</div>
-                    <label for='word'>Word:</label>
-                    <input type='text' placeholder='Eg. Book or book' name='word'>
+            <h2>Currently connected to: <div id='book-title'></div></h2>
+            <form id='word-choice' name='user-input'>
+                    <label id='word-label' for='word'>Please Enter a Word:</label>
+                    <input type='text' id='word-input' placeholder='Eg. Book or book' name='word'>
+                    <div id='top10'><label for='top10'>Show Top 10 Words:</label>
+                    <input id='checkbox' type='checkbox' name='enable-top10' value='enable'></div>
                     <input type='submit'>
             </form>
+            <h2 id='word-and-count'></h2>
         </div>
         <footer class='bottom'>
             <div class='contact-info'>
@@ -26,9 +29,7 @@
                 Created by Matt Voelpel 2016
             </div>
         </footer>
-
     </body>
     <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
-    <script src='jquery.magnific-popup.js'></script>
-    <script src='validator.js'></script>
+    <script src='static/book_stats/book_stats.js'></script>
 </html>
