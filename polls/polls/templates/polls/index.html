@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Polls</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
+            </nav>
+        </header>
+        <div class='main'>
+            <form name='icecream' action="{% url 'summary' %}" method='post' id='user-input'>
+                {% csrf_token %}
+                <label for="icecream">Fav. Ice Cream:</label>
+                <select name="icecream">
+                    <option value="Vanilla">Vanilla</option>
+                    <option value="Chocolate">Chocolate</option>
+                    <option value="Strawberry">Strawberry</option>
+                </select>
+                <input type='submit'>
+            </form>
+        </div>
+        <footer class='bottom'>
+            <div>
+                Polls - Front-End Practice
+            </div>
+            <div>
+                Created Erin and Matt.
+            </div>
+        </footer>
+    </body>
+    <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
+</html>

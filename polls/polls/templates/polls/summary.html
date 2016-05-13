@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Polls</title>
+        <style>section {display: flex} p {margin: 20px;}</style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{% url 'index' %}"><div class="form-btn">Take Survey</div></a>
+            </nav>
+        </header>
+        <div class='main'>
+            {{ icecream }}
+            <section>
+                {% for icecream in results %}
+                <article class="tile">
+                    <p class="icecream">{{ icecream.flavor }}</p>
+                    <p class="votes">{{ icecream.percentage }}</p>
+                </article>
+                {% endfor %}
+            </section>
+        </div>
+        <footer class='bottom'>
+            <div>
+                Polls - Front-End Practice
+            </div>
+            <div>
+                Created by Erin and Matt
+            </div>
+        </footer>
+    </body>
+    <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
+    <!-- <script src="{% static 'polls/polls.js' %}"></script> -->
+</html>
