@@ -17,8 +17,8 @@
             <section>
                 {% for joke in jokes %}
                 <article class="joke-tile">
-                    <p>{{ joke.setup }}</p>
-                    <p>{{ joke.punchline }}</p>
+                    <p class="setup">{{ joke.setup }}</p>
+                    <p class="punchline">{{ joke.punchline }}</p>
                 </article>
                 {% endfor %}
             </section>

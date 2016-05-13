@@ -2,7 +2,8 @@
 
 
 function registerGlobalEventHandlers() {
-    $('form').on('submit', function (event) {
+    $('.joke-tile').on('click', function (event) {
+        $(event.target).children().css('visibility', 'visible');
     });
 }
 
