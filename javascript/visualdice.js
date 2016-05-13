@@ -78,7 +78,7 @@ function createDieTileElement(dieNumber) {
     var tileElement = $('<div></div>');
     tileElement.toggleClass('tile');
     tileElement.addClass('spinEffect');
-    if (dieNumber === 6){
+    if (dieNumber === 6) {
         tileElement.addClass('six');
     }
     tileElement.append(dieImageElement);

@@ -17,6 +17,9 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.jokes, name='index'),
+    url(r'^$', views.render_index, name='index'),
+    url(r'^form_page$', views.render_form_page, name='form_page'),
+    # url(r'^favicon.ico$', views.favicon, name='favicon'),
+    url(r'^form_page/submit$', views.render_ack)
     # url(r'^form/submit$', views.render_ack),
 ]

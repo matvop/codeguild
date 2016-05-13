@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
         <title>Jokes</title>
-        <link href='static/jokes/jokes.css' rel='stylesheet'>
+        <link href="{% static 'jokes/jokes.css' %}" rel='stylesheet'>
     </head>
     <body>
         <header>
@@ -21,8 +22,12 @@
         </div>
         <footer class='bottom'>
             <div class='contact-info'>
-                <a href='https://www.linkedin.com/in/mattvoelpel'><img id='linkedin' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/100px-LinkedIn_Logo.svg.png'></a>
-                <a href='mailto:matvop@gmail.com'><img id='email' src='http://chrisholmquistphotography.com/files/4313/9108/0434/Communication-email-2-icon.png'></a>
+                <a href='https://www.linkedin.com/in/mattvoelpel'>
+                    <img id='linkedin' src="{% static 'jokes/LinkedIn_Logo.png' %}">
+                </a>
+                <a href='mailto:matvop@gmail.com'>
+                    <img id='email' src="{% static 'jokes/email-icon.png' %}">
+                </a>
             </div>
             <div>
                 Created by Matt Voelpel 2016
@@ -30,5 +35,5 @@
         </footer>
     </body>
     <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
-    <script src='static/jokes/jokes.js'></script>
+    <script src="{% static 'jokes/jokes.js' %}"></script>
 </html>

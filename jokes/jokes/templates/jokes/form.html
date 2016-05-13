@@ -10,20 +10,19 @@
         <header>
             <nav>
                 <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
-                <a href="{% url 'form_page' %}"><div class="btn first">Submit Joke</div></a>
             </nav>
             <h1>Jokes - Django Practice</h1>
         </header>
-        <div class="response">
-            <h2>Your joke was submitted!</h2>
-        </div>
         <div class='main'>
-            <section>
-                <article class="joke-tile">
-                    <p>{{ joke.setup }}</p>
-                    <p>{{ joke.punchline }}</p>
-                </article>
-            </section>
+            <form action='/form_page/submit' method='post' id='user-input'>
+                {% csrf_token %}
+                <h2>Submit-A-Joke 9000:</h2>
+                <label for='setup'><h3>Setup:</h3></label>
+                <textarea name="setup" cols="30" rows="10" class='setup' placeholder="E.g. What's black and white, and red all over?"></textarea>
+                <label for='punchline'><h3>Punchline:</h3></label>
+                <textarea name="punchline" cols="30" rows="5" class='punchline' placeholder="E.g. A penguin with a sunburn!"></textarea>
+                <input type='submit'>
+            </form>
         </div>
         <footer class='bottom'>
             <div class='contact-info'>
