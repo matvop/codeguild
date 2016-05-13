@@ -8,6 +8,9 @@
     </head>
     <body>
         <header>
+            <div class="info">
+                Enter a setup and a punchline then submit it!
+            </div>
             <nav>
                 <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
             </nav>
@@ -20,8 +23,8 @@
                 <textarea name="setup" cols="30" rows="10" class='setup-entry' placeholder="E.g. What's black and white, and red all over?"></textarea>
                 <label for='punchline'><h3>Punchline:</h3></label>
                 <textarea name="punchline" cols="30" rows="5" class='punchline-entry' placeholder="E.g. A penguin with a sunburn!"></textarea>
-                <input type='submit'>
-            </form>
+                <button class='submit-form' type="submit">Submit Your Joke</button>
+                </form>
         </div>
         <footer class='bottom'>
             <div class='contact-info'>

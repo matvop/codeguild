@@ -12,14 +12,19 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
     height: 50px;
     margin: 5px;
+}
+.info {
+    width: 120px;
+}
+.nav-cont {
+    align-self: flex-end;;
 }
 a {
     text-decoration: none;
 }
-.btn {
+.btn, .submit-form {
     box-sizing: border-box;
     background-color: transparent;
     border: 2px solid #e74c3c;
@@ -41,12 +46,19 @@ a {
     -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
-.btn:hover, .btn:focus {
-  color: #fff;
-  outline: 0;
+.btn:hover, .btn:focus, .submit-form:hover, .submit-form:focus {
+    color: #fff;
+    outline: 0;
 }
 .btn:hover {
-  box-shadow: 0 0 40px 40px #e74c3c inset;
+    box-shadow: 0 0 40px 40px #e74c3c inset;
+}
+.submit-form {
+    border: 2px solid mediumseagreen;
+    color: mediumseagreen;
+}
+.submit-form:hover {
+    box-shadow: 0 0 40px 40px mediumseagreen inset;
 }
 .response {
     align-self: center;

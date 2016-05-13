@@ -2,8 +2,8 @@
 
 
 function registerGlobalEventHandlers() {
-    $('.joke-tile').on('click', function (event) {
-        $(event.target).children().css('visibility', 'visible');
+    $('.setup').on('click', function (event) {
+        $(event.target).siblings().css('visibility', 'visible');
     });
 }
 

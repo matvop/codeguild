@@ -5,7 +5,6 @@ from . import logic
 
 def save_vote(request):
     vote = request.POST['icecream']
-    print('vote')
     logic.save_vote(vote)
     return render(request, 'polls/summary.html')
 

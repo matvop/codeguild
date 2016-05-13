@@ -4,12 +4,12 @@
     <head>
         <meta charset='utf-8'>
         <title>Polls</title>
+        <link href="{% static 'polls/style.css' %}" rel='stylesheet'>
+        <link rel="icon" href="{% static 'polls/favicon.ico' %}">
     </head>
     <body>
         <header>
-            <nav>
-                <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
-            </nav>
+            <h1>Polls - Group Practice</h1>
         </header>
         <div class='main'>
             <form name='icecream' action="{% url 'summary' %}" method='post' id='user-input'>
@@ -20,7 +20,7 @@
                     <option value="Chocolate">Chocolate</option>
                     <option value="Strawberry">Strawberry</option>
                 </select>
-                <input type='submit'>
+                <button type="submit">Submit</button>
             </form>
         </div>
         <footer class='bottom'>
@@ -28,9 +28,8 @@
                 Polls - Front-End Practice
             </div>
             <div>
-                Created Erin and Matt.
+                Created by Matt and Erin
             </div>
         </footer>
     </body>
-    <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
 </html>

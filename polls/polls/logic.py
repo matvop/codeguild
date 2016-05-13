@@ -4,7 +4,6 @@ def save_vote(vote):
     """Save a vote"""
     global raw_votes
     raw_votes.append(vote.lower())
-    print(raw_votes)
 
 def get_vote_counts(votes):
     vote_counts = []
@@ -18,10 +17,9 @@ def get_vote_counts(votes):
 
 def get_vote_percent(total, counts):
     flavors_and_percent = []
-    flavors_and_percent.append({'flavor': 'vanilla', 'percentage': round(counts[0] / total, 2)})
-    flavors_and_percent.append({'flavor': 'chocolate', 'percentage': round(counts[1] / total, 2)})
-    flavors_and_percent.append({'flavor': 'strawberry', 'percentage': round(counts[2] / total, 2)})
-    print(flavors_and_percent)
+    flavors_and_percent.append({'flavor': 'Vanilla', 'percentage': round(counts[0] / total, 2)})
+    flavors_and_percent.append({'flavor': 'Chocolate', 'percentage': round(counts[1] / total, 2)})
+    flavors_and_percent.append({'flavor': 'Strawberry', 'percentage': round(counts[2] / total, 2)})
     return flavors_and_percent
 
 def get_summary():

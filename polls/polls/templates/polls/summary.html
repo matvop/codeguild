@@ -4,12 +4,14 @@
     <head>
         <meta charset='utf-8'>
         <title>Polls</title>
+        <link rel="stylesheet" href="{% static 'polls/style.css' %}">
         <style>section {display: flex} p {margin: 20px;}</style>
+        <link rel="icon" href="{% static 'polls/favicon.ico' %}">
     </head>
     <body>
         <header>
             <nav>
-                <a href="{% url 'index' %}"><div class="form-btn">Take Survey</div></a>
+                <a href="{% url 'index' %}"><div class="btn first">Back Home</div></a>
             </nav>
         </header>
         <div class='main'>
@@ -32,6 +34,4 @@
             </div>
         </footer>
     </body>
-    <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
-    <!-- <script src="{% static 'polls/polls.js' %}"></script> -->
 </html>
