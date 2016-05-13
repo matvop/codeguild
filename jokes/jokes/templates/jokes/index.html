@@ -5,13 +5,13 @@
         <meta charset='utf-8'>
         <title>Jokes</title>
         <link href="{% static 'jokes/jokes.css' %}" rel='stylesheet'>
+        <link rel="icon" href="{% static 'jokes/favicon.ico' %}">
     </head>
     <body>
         <header>
             <nav>
                 <a href="{% url 'form_page' %}"><div class="btn first">Submit Joke</div></a>
             </nav>
-            <h1>Jokes - Django Practice</h1>
         </header>
         <div class='main'>
             <section>
@@ -31,6 +31,9 @@
                 <a href='mailto:matvop@gmail.com'>
                     <img id='email' src="{% static 'jokes/email-icon.png' %}">
                 </a>
+            </div>
+            <div>
+                Jokes - Django Practice
             </div>
             <div>
                 Created by Matt Voelpel 2016

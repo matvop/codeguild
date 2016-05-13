@@ -1,9 +1,12 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
         <title>Book Stats</title>
-        <link href='static/book_stats/book_stats.css' rel='stylesheet'>
+        <link href="{% static 'book_stats/book_stats.css' %}" rel='stylesheet'>
+        <link href="{% static 'book_stats/favicon.ico' %}" rel='icon'>
+
     </head>
     <body>
         <header>
@@ -16,20 +19,31 @@
                     <input type='text' id='word-input' placeholder='Eg. Book or book' name='word'>
                     <div id='top10'><label for='top10'>Show Top 10 Words:</label>
                     <input id='checkbox' type='checkbox' name='enable-top10' value='enable'></div>
-                    <input type='submit'>
+                    <button type="submit">Submit Word</button>
             </form>
+            <nav>
+            </nav>
+            <section>
+                {% for pair in top10 %}
+                <article class="joke-tile">
+                    <p>{{ pair }}</p>
+                </article>
+                {% endfor %}
+            </section>
             <h2 id='word-and-count'></h2>
         </div>
         <footer class='bottom'>
             <div class='contact-info'>
-                <a href='https://www.linkedin.com/in/mattvoelpel'><img id='linkedin' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/LinkedIn_Logo.svg/100px-LinkedIn_Logo.svg.png'></a>
-                <a href='mailto:matvop@gmail.com'><img id='email' src='http://chrisholmquistphotography.com/files/4313/9108/0434/Communication-email-2-icon.png'></a>
+                <a href='https://www.linkedin.com/in/mattvoelpel'><img id='linkedin' src="{% static 'book_stats/LinkedIn_Logo.png' %}"></a>
+                <a href='mailto:matvop@gmail.com'><img id='email' src="{% static 'book_stats/email-icon.png' %}"></a>
             </div>
+            <div>
+                Book Stats - Django Practice
             <div>
                 Created by Matt Voelpel 2016
             </div>
         </footer>
     </body>
     <script src='http://code.jquery.com/jquery-2.2.3.js'></script>
-    <script src='static/book_stats/book_stats.js'></script>
+    <script src="{% static 'book_stats/book_stats.js' %}"></script>
 </html>

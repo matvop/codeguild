@@ -3,7 +3,7 @@ from django.shortcuts import render
 from . import logic
 
 def render_top10(request):
-    result = logic.print_top_10()
+    result = logic.get_top_10()
     return(HttpResponse(result))
 
 def render_book_title(request):
@@ -20,3 +20,5 @@ def render_word_and_count(request):
 
 def book_stats(request):
     return render(request, 'book_stats/book_stats.html')
+
+top10 = logic.get_top_10

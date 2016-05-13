@@ -18,7 +18,7 @@ def get_book_title():
     title = title_and_ext[0]
     return title
 
-def print_top_10(n=10):
+def get_top_10(n=10):
     global dictionary
     top10_list = []
     for word, count in dictionary.most_common(n):
