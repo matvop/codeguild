@@ -12,14 +12,17 @@ body {
 header {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: 75px;
     margin: 5px;
 }
 .info {
     width: 120px;
 }
-.nav-cont {
-    align-self: flex-end;;
+nav {
+    display: flex;
+}
+.nav-cont{
+    flex: 1;
 }
 a {
     text-decoration: none;
@@ -33,7 +36,7 @@ a {
     cursor: pointer;
     display: flex;
     align-self: center;
-    font-size: 1.0em;
+    font-size: 1.2em;
     font-weight: 400;
     line-height: 1;
     margin: 5px;
@@ -54,11 +57,11 @@ a {
     box-shadow: 0 0 40px 40px #e74c3c inset;
 }
 .submit-form {
-    border: 2px solid mediumseagreen;
-    color: mediumseagreen;
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
 }
 .submit-form:hover {
-    box-shadow: 0 0 40px 40px mediumseagreen inset;
+    box-shadow: 0 0 40px 40px dodgerblue inset;
 }
 .response {
     align-self: center;
@@ -83,6 +86,9 @@ section {
     flex-direction: column;
     margin: 5px;
     box-shadow: 1px 1px 10px 5px rgba(140, 140, 140, 1);
+}
+.setup {
+    cursor: pointer;
 }
 p {
     margin: 10px;
@@ -116,9 +122,6 @@ form {
 }
 h2 {
     color: dodgerblue;
-}
-nav {
-    display: flex;
 }
 #num {
     margin: 0;
