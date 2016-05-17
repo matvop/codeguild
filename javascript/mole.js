@@ -15,6 +15,7 @@ function createColumn() {
     return col;
 }
 
+
 function createTileElement() {
     var imageElement = $('<img></img>');
     imageElement.toggleClass('hole');
@@ -24,6 +25,7 @@ function createTileElement() {
     tileElement.append(imageElement);
     return tileElement;
 }
+
 
 function createRowsAndTilesThenPopulateTheBoard() {
     var imgArray = [];
@@ -40,6 +42,14 @@ function createRowsAndTilesThenPopulateTheBoard() {
     return imgArray;
 }
 
+
+function getRandomIndex(imgArray) {
+    var i = Math.round((Math.random()) * imgArray.length);
+    if (i === imgArray.length) --i;
+    return i;
+}
+
+
 function getEmptyHole(imgArray) {
     var i = Math.round((Math.random()) * imgArray.length);
     if (i === imgArray.length) --i;
@@ -47,20 +57,31 @@ function getEmptyHole(imgArray) {
     return randomHole;
 }
 
+
+function changeHoleToMole(randomHole) {
+    randomHole.attr('src', 'mole.png');
+    randomHole.toggleClass('hole mole');
+    randomHole.on('click', function (event) {
+        randomHole.attr('src', 'hole.png');
+        if (randomHole.attr('class') === 'mole') {
+            randomHole.toggleClass('mole hole');
+        }
+    });
+}
+
+
 function animateTheBoard(imgArray) {
     var counter = {i : []};
     var animate = setInterval(function() {
-        var i = Math.round((Math.random()) * imgArray.length);
-        if (i === imgArray.length) --i;
+        var i = getRandomIndex(imgArray);
         var randomHole = $(imgArray[i]);
-        counter.i.push(randomHole);
+        // counter.i.push(randomHole);
         if (randomHole.attr('src') === 'mole.png') {
-            getEmptyHole(imgArray);
+            randomHole = getEmptyHole(imgArray);
         }
-        randomHole.attr('src', 'mole.png');
-        randomHole.on('click', function (event) {
-            randomHole.attr('src', 'hole.png');
-        });
+        if (randomHole.attr('class') === 'hole') {
+            changeHoleToMole(randomHole);
+        }
     }, 1000);
     $('#stop').on('click', function (event) {
         clearInterval(animate);
@@ -76,6 +97,7 @@ function main() {
     var imgArray = createRowsAndTilesThenPopulateTheBoard();
     animateTheBoard(imgArray);
 }
+
 
 function registerGlobalEventHandlers() {
     $("#start").on("click", function (event) {
