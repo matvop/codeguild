@@ -18,10 +18,11 @@ from django.views.generic.base import RedirectView
 from django.conf.urls import url
 from . import views
 
+
 urlpatterns = [
-    url(r'^top10', views.render_top10),
-    url(r'^count', views.render_word_and_count),
-    url(r'^title', views.render_book_title),
+    url(r'^top10$', views.render_top10),
+    url(r'^count$', views.render_word_and_count),
+    url(r'^title$', views.render_book_title),
     url(r'^$', views.book_stats),
     url(r'^favicon.ico$', RedirectView.as_view(
         url=staticfiles_storage.url('jokes/favicon.ico'),
