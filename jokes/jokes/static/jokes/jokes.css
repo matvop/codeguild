@@ -96,22 +96,22 @@ p {
 .punchline {
     visibility: hidden;
 }
-#red {
+.red {
     background-color: indianred;
 }
-#blue {
+.blue {
     background-color: cornflowerblue;
 }
-#green {
+.green {
     background-color: mediumseagreen;
 }
-#purple {
+.purple {
     background-color: mediumpurple;
 }
-#orange {
+.orange {
     background-color: orange;
 }
-#cyan {
+.cyan {
     background-color: cadetblue;
 }
 form {

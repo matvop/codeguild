@@ -12,6 +12,7 @@ def render_ack(request):
                 'punchline': punchline,
     }
     logic.save_joke(joke)
+    joke['color'] = logic.get_random_color()
     template_arguments = {
         'joke': joke,
     }
@@ -25,6 +26,8 @@ def render_form_page(request):
 
 def render_index(request):
     jokes = logic.get_all_jokes()
+    for joke in jokes:
+        joke['color'] = logic.get_random_color()
     context = {
         'jokes': jokes,
     }

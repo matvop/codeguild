@@ -21,7 +21,7 @@
         <div class='main'>
             <section>
                 {% for joke in jokes %}
-                <article class="joke-tile">
+                <article class="joke-tile {{ joke.color }}">
                     <p class="setup">{{ joke.setup }}</p>
                     <p class="punchline">{{ joke.punchline }}</p>
                 </article>
