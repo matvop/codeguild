@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Flutter</title>
+        <link href="{% static 'flutter/style.css' %}" rel='stylesheet'>
+    </head>
+    <body>
+        <header>
+            <div class="info">
+                Home Page
+            </div>
+            <nav>
+                <a href="{% url 'post' %}"><div class="btn">Post a Flutt</div></a>
+            </nav>
+        </header>
+        <div class='main'>
+            <section>
+                {% for flutt in flutts %}
+                <article class="flutt-tile">
+                    <div class="post-info">
+                        <p class="user-name">{{ flutt.user_name }}</p>
+                        <p class="datetime">{{ flutt.datetime }}</p>
+                    </div>
+                    <p class="comment">{{ flutt.comment }}</p>
+                </article>
+                {% endfor %}
+            </section>
+        </div>
+        <footer class='bottom'>
+            <div class='contact-info'>
+                <a href='https://www.linkedin.com/in/mattvoelpel'>
+                    <img id='linkedin' src="{% static 'flutter/LinkedIn_Logo.png' %}">
+                </a>
+                <a href='mailto:matvop@gmail.com'>
+                    <img id='email' src="{% static 'flutter/email-icon.png' %}">
+                </a>
+            </div>
+            <div>
+                Flutter - Django/Models Practice
+            </div>
+            <div>
+                Created by Matt Voelpel 2016
+            </div>
+        </footer>
+    </body>
+</html>

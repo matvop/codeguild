@@ -1,0 +1,124 @@
+html {
+    background-color: gainsboro;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: monospace;
+    border-width: 0px;
+    min-height: 100vh;
+    margin: 0;
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin: 5px;
+}
+.info {
+    position: absolute; left: 0;
+    width: 120px;
+    float: left;
+}
+.response {
+    align-self: center;
+}
+a {
+    text-decoration: none;
+}
+.btn, .submit-form {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: 3px solid dodgerblue;
+    border-radius: 0.6em;
+    color: dodgerblue;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1.2em;
+    font-weight: 400;
+    line-height: 1;
+    margin: 5px;
+    padding: .5em .5em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.btn:hover, .btn:focus, .submit-form:hover, .submit-form:focus {
+    color: #fff;
+    outline: 0;
+}
+.btn:hover {
+    box-shadow: 0 0 40px 40px dodgerblue inset;
+}
+.submit-form {
+    border: 3px solid dodgerblue;
+    color: dodgerblue;
+}
+.submit-form:hover {
+    box-shadow: 0 0 40px 40px dodgerblue inset;
+}
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+}
+.flutt-tile {
+    background-color: dodgerblue;
+    border-style: solid;
+    border-color: white;
+    margin: 5px;
+}
+.flutt-tile > p {
+    font-size: 1.25em;
+    color: white;
+    background-color: none;
+}
+p {
+    color: white;
+    background-color: none;
+    margin: 5px;
+}
+.post-info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom-color: white;
+    border-bottom-style: solid;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    font-family: monospace;
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+.contact-info {
+    display: flex;
+}
+#linkedin, #email {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 20px;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}

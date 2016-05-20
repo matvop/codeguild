@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <title>Flutter Entry</title>
+        <link href="{% static 'flutter/style.css' %}" rel='stylesheet'>
+    </head>
+    <body>
+        <header>
+            <div class="info">
+                Submit a new flutt!
+            </div>
+            <nav>
+                <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
+            </nav>
+        </header>
+        <div class='main'>
+            <form action="{% url 'ack' %}" method='post' id='user-input'>
+                {% csrf_token %}
+                <h2>Enter your Flutt:</h2>
+                <label for='user-name'><h3>User Name:</h3></label>
+                <input name="user-name" cols="30" class='username-entry' placeholder="E.g. JSmith2016" required></textarea>
+                <label for='comment'><h3>Comment:</h3></label>
+                <textarea name="comment" cols="30" rows="5" class='comment-entry' placeholder="E.g. From Hell's heart; I stab at thee!!" required></textarea>
+                <button class='submit-form' type="submit">Submit!</button>
+                </form>
+        </div>
+        <footer class='bottom'>
+            <div class='contact-info'>
+                <a href='https://www.linkedin.com/in/mattvoelpel'>
+                    <img id='linkedin' src="{% static 'flutter/LinkedIn_Logo.png' %}">
+                </a>
+                <a href='mailto:matvop@gmail.com'>
+                    <img id='email' src="{% static 'flutter/email-icon.png' %}">
+                </a>
+            </div>
+            <div>
+                Flutter - Django/Models Practice
+            </div>
+            <div>
+                Created by Matt Voelpel 2016
+            </div>
+        </footer>
+    </body>
+</html>
