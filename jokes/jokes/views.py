@@ -8,8 +8,8 @@ def render_ack(request):
     setup = request.POST['setup']
     punchline = request.POST['punchline']
     joke = {
-                'setup': setup,
-                'punchline': punchline,
+        'setup': setup,
+        'punchline': punchline,
     }
     logic.save_joke(joke)
     joke['color'] = logic.get_random_color()
