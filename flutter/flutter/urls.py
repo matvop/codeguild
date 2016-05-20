@@ -29,4 +29,6 @@ urlpatterns = [
         url=staticfiles_storage.url('flutter/favicon.ico'),
         permanent=False),name="favicon"),
     url(r'^search$', views.render_user_flutts, name='search_query'),
+    url(r'^login/$', views.render_login, name='login'),
+    url(r'^logout/$', views.render_logout, name='logout'),
 ]

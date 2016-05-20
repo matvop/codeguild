@@ -3,13 +3,17 @@
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
-        <title>Flutter Entry</title>
+        <title>{{ user }} Submit a new flutt!</title>
         <link href="{% static 'flutter/style.css' %}" rel='stylesheet'>
     </head>
     <body>
         <header>
             <div class="info">
-                Submit a new flutt!
+                {% if user.is_authenticated %}
+                    <a href="/logout/">Logout</a>
+                {% else %}
+                    <a href="/login/?next={{ request.path }}">Login</a>
+                {% endif %}
             </div>
             <nav>
                 <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
@@ -20,7 +24,7 @@
                 {% csrf_token %}
                 <h1>Enter your Flutt:</h1>
                 <label for='user-name'><h3>User Name:</h3></label>
-                <input name="user-name" cols="30" class='username-entry' placeholder="E.g. JSmith2016" required></textarea>
+                <input name="user-name" class='username-entry' placeholder="E.g. JSmith2016" required></input>
                 <label for='comment'><h3>Comment:</h3></label>
                 <textarea name="comment" cols="30" rows="5" class='comment-entry' placeholder="E.g. From Hell's heart; I stab at thee!!" required></textarea>
                 <button class='submit-form' type="submit">Submit!</button>
