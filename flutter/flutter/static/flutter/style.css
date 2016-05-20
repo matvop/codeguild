@@ -135,3 +135,30 @@ footer {
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
 }
+@media screen and (max-width: 980px) {
+    section {
+        max-width: 800px;
+    }
+    header {
+        max-height: 200px;
+    }
+    .btn, .submit-form {
+        font-size: 400%;
+        margin: 10px;
+    }
+    .textbox, .username-entry {
+        height: 50px;
+        padding: 1px;
+        font-size: 250%;
+    }
+    .comment-entry {
+        height: 200px;
+        font-size: 300%;
+    }
+    label {
+        font-size: 250%;
+    }
+    h1 {
+        font-size: 3.0em;
+    }
+}
