@@ -12,12 +12,15 @@ function createDelLink(tileElement) {
 }
 
 function createImgTileElement(url) {
-    var imageElement =  $('<img></img>').attr('src', url);
-    var fullSizeLink = $('<a></a>').attr('href', url).append(imageElement).toggleClass('image-popup-no-margins');
-    var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
+    var imageElement = $('<img></img>').attr('src', url);
+    var fullSizeLink = $('<a></a>').attr('href', url).append(
+        imageElement).toggleClass('image-popup-no-margins');
+    var tileElement = $('<div></div>').append(
+        fullSizeLink).toggleClass('tile');
     var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(
+        paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
@@ -26,11 +29,13 @@ function createYtTileElement(url) {
     var videoName = url.slice(-11);
     var thumbnailUrl = ('http://img.youtube.com/vi/' + videoName + '/0.jpg');
     var videoThumbnailElement = $('<img></img>').attr('src', thumbnailUrl);
-    var fullSizeLink = $('<a></a>').attr('href', url).append(videoThumbnailElement).toggleClass('popup-youtube');
+    var fullSizeLink = $('<a></a>').attr('href', url).append(
+        videoThumbnailElement).toggleClass('popup-youtube');
     var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
     var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(
+        paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
@@ -39,31 +44,57 @@ function createWebmTileElement(url) {
     var webmName = url.slice(-12, -5);
     var thumbnailUrl = ('http://i.imgur.com/' + webmName + 'b' + '.jpg');
     var videoThumbnailElement = $('<img></img>').attr('src', thumbnailUrl);
-    var webmSourceElement = $('<source></source>').attr('src', url).attr('type', 'video/webm');
-    var mp4SourceElement = $('<source></source>').attr('src', url).attr('type', 'video/mp4');
-    var webmElement =  $('<video></video>').attr('autoplay', 'autoplay').attr('loop', 'loop').attr('muted', 'muted').append(webmSourceElement).append(mp4SourceElement);
-    var fullSizeLink = $('<a></a>').attr('href', url).append(videoThumbnailElement).toggleClass('popup-vimeo');
+    var webmSourceElement = $('<source></source>').attr('src', url).attr(
+        'type', 'video/webm');
+    var mp4SourceElement = $('<source></source>').attr('src', url).attr(
+        'type', 'video/mp4');
+    var webmElement =  $('<video></video>').attr('autoplay', 'autoplay').attr(
+        'loop', 'loop').attr('muted', 'muted').append(
+            webmSourceElement).append(mp4SourceElement);
+    var fullSizeLink = $('<a></a>').attr('href', url).append(
+        videoThumbnailElement).toggleClass('popup-vimeo');
     var tileElement = $('<div></div>').append(fullSizeLink).toggleClass('tile');
     var paraElement = $('<p></p>').text(url);
     var delLink = createDelLink(tileElement);
-    var flexDivElement = $('<div></div>').toggleClass('flex').append(paraElement).append(delLink);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(
+        paraElement).append(delLink);
+    tileElement.append(flexDivElement);
+    return tileElement;
+}
+
+function createGifTileElement(url) {
+    var imageElement = $('<img></img>').attr('src', url);
+    imageElement.toggleClass('gif');
+    var fullSizeLink = $('<a></a>').attr('href', url).append(
+        imageElement).toggleClass('image-popup-no-margins');
+    var tileElement = $('<div></div>').append(
+        fullSizeLink).toggleClass('tile');
+    var paraElement = $('<p></p>').text(url);
+    var delLink = createDelLink(tileElement);
+    var flexDivElement = $('<div></div>').toggleClass('flex').append(
+        paraElement).append(delLink);
     tileElement.append(flexDivElement);
     return tileElement;
 }
 
 function getUrlAndAddImgToGrid(imgURL) {
     var tileElement = createImgTileElement(imgURL);
-    return $('section').append(tileElement);
+    return $('section').prepend(tileElement);
 }
 
 function getUrlAndAddYtToGrid(ytURL) {
     var tileElement = createYtTileElement(ytURL);
-    return $('section').append(tileElement);
+    return $('section').prepend(tileElement);
 }
 
 function getUrlAndAddWebmToGrid(webmURL) {
     var tileElement = createWebmTileElement(webmURL);
-    return $('section').append(tileElement);
+    return $('section').prepend(tileElement);
+}
+
+function getUrlAndAddGifToGrid(gifURL) {
+    var tileElement = createGifTileElement(gifURL);
+    return $('section').prepend(tileElement);
 }
 
 function updateTileCount() {
@@ -96,11 +127,14 @@ function getUploadedMediaType() {
     if (ytURL === 'https://www.youtube.com/') {
         getUrlAndAddYtToGrid(mediaURL);
     }
-    else if (fileExt === 'jpg' || fileExt === 'png' || fileExt === 'gif' || fileExt === 'bmp' ) {
+    else if (fileExt === 'jpg' || fileExt === 'png' || fileExt === 'bmp' ) {
         getUrlAndAddImgToGrid(mediaURL);
     }
     else if (fileExt === 'webm') {
         getUrlAndAddWebmToGrid(mediaURL);
+    }
+    else if (fileExt === 'gif') {
+        getUrlAndAddGifToGrid(mediaURL);
     }
 }
 
@@ -116,7 +150,7 @@ function registerGlobalEventHandlers() {
     		closeOnContentClick: true,
     		closeBtnInside: false,
     		fixedContentPos: true,
-    		mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    		mainClass: 'mfp-no-margins mfp-with-zoom',
     		image: {
     			verticalFit: true
     		},
@@ -144,4 +178,14 @@ function setFocusToTextBox(){
 $(document).ready(function () {
     registerGlobalEventHandlers();
     setFocusToTextBox();
+});
+$(document).scroll(function() {
+    if ($('.gif').visible() === true) {
+        $('.gif').gifplayer('play');
+        console.log('played gif');
+    }
+    else if ($('.gif').visible() === false) {
+        $('.gif').gifplayer('stop');
+        console.log('stopped gif');
+    }
 });

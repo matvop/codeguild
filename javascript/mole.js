@@ -43,9 +43,16 @@ function createRowsAndTilesThenPopulateTheBoard() {
 }
 
 
-function getRandomIndex(imgArray) {
-    var i = Math.round((Math.random()) * imgArray.length);
-    if (i === imgArray.length) --i;
+function getRandomHoleIndex(imgArray) {
+    var holeImgArray = []
+    for (var imgIndex = 0; imgIndex < imgArray.length; imgIndex++) {
+        if (imgArray[imgIndex].attr('class') === 'hole') {
+            holeImgArray.push(imgIndex);
+        }
+    }
+    var i = holeImgArray[
+        Math.round((Math.random()) * (holeImgArray.length - 1))
+    ];
     return i;
 }
 
@@ -71,28 +78,19 @@ function changeHoleToMole(randomHole) {
 
 
 function animateTheBoard(imgArray) {
-    var counter = {i : []};
     var animate = setInterval(function() {
-        var i = getRandomIndex(imgArray);
+        var i = getRandomHoleIndex(imgArray);
         var randomHole = $(imgArray[i]);
-        // counter.i.push(randomHole);
-        if (randomHole.attr('src') === 'mole.png') {
-            randomHole = getEmptyHole(imgArray);
-        }
-        if (randomHole.attr('class') === 'hole') {
-            changeHoleToMole(randomHole);
-        }
+        changeHoleToMole(randomHole);
     }, 1000);
     $('#stop').on('click', function (event) {
         clearInterval(animate);
-        // $('article').remove();
     });
     return animate;
 }
 
 
 function main() {
-    var hitAndMissArray = [];
     var tileElement = createTileElement();
     var imgArray = createRowsAndTilesThenPopulateTheBoard();
     animateTheBoard(imgArray);
@@ -104,13 +102,9 @@ function registerGlobalEventHandlers() {
         $('article').remove();
         main();
     });
-    // $('#stop').on('click', function (event) {
-    //     clearInterval(animateTheBoard());
-    //     // $('article').remove();
-    // });
 }
 
 
 $(document).ready(function() {
     registerGlobalEventHandlers();
-})
+});
