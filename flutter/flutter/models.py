@@ -25,10 +25,10 @@ class Flutt(models.Model):
         )
 
     def __repr__(self):
-        return 'FluttEntry(user={!r}, created={!r}, content={!r})'.format(
+        return 'user={!r} datetime={!r} comment={!r}'.format(
             self.user_name,
             self.datetime,
-            self.flutt_text,
+            self.comment,
         )
 
     class Meta:

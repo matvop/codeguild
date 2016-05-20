@@ -9,18 +9,24 @@
     <body>
         <header>
             <div class="info">
-                Home Page
             </div>
             <nav>
                 <a href="{% url 'post' %}"><div class="btn">Post a Flutt</div></a>
+                <form action="{% url 'search_query' %}" method="GET">
+                    <input name="query" placeholder="Search for user"></input>
+                    <button class="invis" type="submit">search</button>
+                </form>
             </nav>
         </header>
+        <div class="response">
+            <h2>10 Most Recent Flutts</h2>
+        </div>
         <div class='main'>
             <section>
                 {% for flutt in flutts %}
                 <article class="flutt-tile">
                     <div class="post-info">
-                        <p class="user-name">{{ flutt.user_name }}</p>
+                        <p class="user-name"><a href="/search?query={{ flutt.user_name }}">{{ flutt.user_name }}</a></p>
                         <p class="datetime">{{ flutt.datetime }}</p>
                     </div>
                     <p class="comment">{{ flutt.comment }}</p>
@@ -31,14 +37,14 @@
         <footer class='bottom'>
             <div class='contact-info'>
                 <a href='https://www.linkedin.com/in/mattvoelpel'>
-                    <img id='linkedin' src="{% static 'flutter/LinkedIn_Logo.png' %}">
+                    <img src="{% static 'flutter/LinkedIn_Logo.png' %}">
                 </a>
                 <a href='mailto:matvop@gmail.com'>
-                    <img id='email' src="{% static 'flutter/email-icon.png' %}">
+                    <img src="{% static 'flutter/email-icon.png' %}">
                 </a>
             </div>
             <div>
-                Flutter - Django/Models Practice
+                Flutter - Django Models/Query Practice
             </div>
             <div>
                 Created by Matt Voelpel 2016

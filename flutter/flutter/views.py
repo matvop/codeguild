@@ -5,6 +5,16 @@ from . import models
 from . import logic
 
 
+def render_user_flutts(request):
+    user_name = request.GET['query']
+    flutts = logic.get_all_flutts_for_user(user_name)
+    context = {
+        'user_name': user_name,
+        'flutts': flutts,
+    }
+    return render(request, 'flutter/results.html', context)
+
+
 def render_ack(request):
     user_name = request.POST['user-name']
     comment = request.POST['comment']

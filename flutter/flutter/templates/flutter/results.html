@@ -3,30 +3,36 @@
 <html lang='en'>
     <head>
         <meta charset='utf-8'>
-        <title>Flutter Entry</title>
+        <title>Flutts for {{ user_name }}</title>
         <link href="{% static 'flutter/style.css' %}" rel='stylesheet'>
     </head>
     <body>
         <header>
-            <div class="info">
-                Submit a new flutt!
-            </div>
             <nav>
                 <a href="{% url 'index' %}"><div class="btn first">Home</div></a>
+                <form action="{% url 'search_query' %}" method="GET">
+                    <input name="query" placeholder="Search for user"></input>
+                    <button class="invis" type="submit">search</button>
+                </form>
             </nav>
         </header>
-        <div class='main'>
-            <form action="{% url 'ack' %}" method='post' id='user-input'>
-                {% csrf_token %}
-                <h2>Enter your Flutt:</h2>
-                <label for='user-name'><h3>User Name:</h3></label>
-                <input name="user-name" cols="30" class='username-entry' placeholder="E.g. JSmith2016" required></textarea>
-                <label for='comment'><h3>Comment:</h3></label>
-                <textarea name="comment" cols="30" rows="5" class='comment-entry' placeholder="E.g. From Hell's heart; I stab at thee!!" required></textarea>
-                <button class='submit-form' type="submit">Submit!</button>
-                </form>
+        <div class="response">
+            <h2>Flutts for: {{ user_name }}</h2>
         </div>
-        <footer class='bottom'>
+        <div class='main'>
+            <section>
+                {% for flutt in flutts %}
+                <article class="flutt-tile">
+                    <div class="post-info">
+                        <p class="user-name">{{ flutt.user_name }}</p>
+                        <p class="datetime">{{ flutt.datetime }}</p>
+                    </div>
+                    <p class="comment">{{ flutt.comment }}</p>
+                </article>
+                {% endfor %}
+            </section>
+        </div>
+        <footer>
             <div class='contact-info'>
                 <a href='https://www.linkedin.com/in/mattvoelpel'>
                     <img src="{% static 'flutter/LinkedIn_Logo.png' %}">

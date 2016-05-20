@@ -28,5 +28,5 @@ urlpatterns = [
     url(r'^favicon.ico$', RedirectView.as_view(
         url=staticfiles_storage.url('flutter/favicon.ico'),
         permanent=False),name="favicon"),
-    # url(r'^form/submit$', views.render_ack),
+    url(r'^search$', views.render_user_flutts, name='search_query'),
 ]
